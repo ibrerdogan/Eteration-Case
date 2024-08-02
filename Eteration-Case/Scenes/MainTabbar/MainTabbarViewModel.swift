@@ -8,6 +8,7 @@
 import UIKit
 protocol TabBarDataSource {
     var viewControllers: [UIViewController] { get }
+    var networkService: NetworkService {get set}
 }
 
 protocol TabBarEventSource: TabBarDataSource {
@@ -17,12 +18,16 @@ protocol TabBarViewProtocol: TabBarEventSource { }
 
 
 final class MainTabbarViewModel: TabBarViewProtocol {
-    
+    var networkService: NetworkService
+    init(networkService: NetworkService) {
+        self.networkService = networkService
+    }
     var viewControllers: [UIViewController] {
         let homeViewController = HomeViewController()
         homeViewController.tabBarItem = UITabBarItem(title: nil,
                                                      image: UIImage(systemName: "house"),
                                                      selectedImage: UIImage(systemName: "house"))
+        let homeNavigationController = UINavigationController(rootViewController: homeViewController)
         
         let basketViewController = BasketViewController()
         basketViewController.tabBarItem = UITabBarItem(title: nil,
@@ -38,6 +43,6 @@ final class MainTabbarViewModel: TabBarViewProtocol {
         profileViewController.tabBarItem = UITabBarItem(title: nil,
                                                      image: UIImage(systemName: "person"),
                                                      selectedImage: UIImage(systemName: "person"))
-        return [homeViewController,basketViewController,favouriteViewcontroller,profileViewController]
+        return [homeNavigationController,basketViewController,favouriteViewcontroller,profileViewController]
     }
 }
