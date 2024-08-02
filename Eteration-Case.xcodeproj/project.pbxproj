@@ -15,6 +15,12 @@
 		7F6F18D02C5D72D800E4D81B /* Eteration_CaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18CF2C5D72D800E4D81B /* Eteration_CaseTests.swift */; };
 		7F6F18DA2C5D72D800E4D81B /* Eteration_CaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18D92C5D72D800E4D81B /* Eteration_CaseUITests.swift */; };
 		7F6F18DC2C5D72D800E4D81B /* Eteration_CaseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18DB2C5D72D800E4D81B /* Eteration_CaseUITestsLaunchTests.swift */; };
+		7F6F18EC2C5D750800E4D81B /* MainTabbarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18EB2C5D750800E4D81B /* MainTabbarViewModel.swift */; };
+		7F6F18EE2C5D751500E4D81B /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18ED2C5D751500E4D81B /* MainTabbarViewController.swift */; };
+		7F6F18F42C5D76B000E4D81B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18F32C5D76B000E4D81B /* HomeViewController.swift */; };
+		7F6F18F62C5D76BC00E4D81B /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18F52C5D76BC00E4D81B /* BasketViewController.swift */; };
+		7F6F18F82C5D76CB00E4D81B /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18F72C5D76CB00E4D81B /* FavouriteViewController.swift */; };
+		7F6F18FA2C5D76D800E4D81B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18F92C5D76D800E4D81B /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +53,12 @@
 		7F6F18D52C5D72D800E4D81B /* Eteration-CaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Eteration-CaseUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6F18D92C5D72D800E4D81B /* Eteration_CaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eteration_CaseUITests.swift; sourceTree = "<group>"; };
 		7F6F18DB2C5D72D800E4D81B /* Eteration_CaseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eteration_CaseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7F6F18EB2C5D750800E4D81B /* MainTabbarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewModel.swift; sourceTree = "<group>"; };
+		7F6F18ED2C5D751500E4D81B /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
+		7F6F18F32C5D76B000E4D81B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		7F6F18F52C5D76BC00E4D81B /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
+		7F6F18F72C5D76CB00E4D81B /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
+		7F6F18F92C5D76D800E4D81B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +109,8 @@
 		7F6F18B42C5D72D600E4D81B /* Eteration-Case */ = {
 			isa = PBXGroup;
 			children = (
-				7F6F18B52C5D72D600E4D81B /* AppDelegate.swift */,
-				7F6F18B72C5D72D600E4D81B /* SceneDelegate.swift */,
+				7F6F18E92C5D74E800E4D81B /* Scenes */,
+				7F6F18E82C5D74DA00E4D81B /* AppDelegate */,
 				7F6F18B92C5D72D600E4D81B /* ViewController.swift */,
 				7F6F18C12C5D72D800E4D81B /* Assets.xcassets */,
 				7F6F18C62C5D72D800E4D81B /* Info.plist */,
@@ -122,6 +134,68 @@
 				7F6F18DB2C5D72D800E4D81B /* Eteration_CaseUITestsLaunchTests.swift */,
 			);
 			path = "Eteration-CaseUITests";
+			sourceTree = "<group>";
+		};
+		7F6F18E82C5D74DA00E4D81B /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				7F6F18B52C5D72D600E4D81B /* AppDelegate.swift */,
+				7F6F18B72C5D72D600E4D81B /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		7F6F18E92C5D74E800E4D81B /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				7F6F18F22C5D76A100E4D81B /* Profile */,
+				7F6F18F12C5D768700E4D81B /* Favourite */,
+				7F6F18F02C5D768000E4D81B /* Basket */,
+				7F6F18EF2C5D767700E4D81B /* Home */,
+				7F6F18EA2C5D74FD00E4D81B /* MainTabbar */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		7F6F18EA2C5D74FD00E4D81B /* MainTabbar */ = {
+			isa = PBXGroup;
+			children = (
+				7F6F18EB2C5D750800E4D81B /* MainTabbarViewModel.swift */,
+				7F6F18ED2C5D751500E4D81B /* MainTabbarViewController.swift */,
+			);
+			path = MainTabbar;
+			sourceTree = "<group>";
+		};
+		7F6F18EF2C5D767700E4D81B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7F6F18F32C5D76B000E4D81B /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		7F6F18F02C5D768000E4D81B /* Basket */ = {
+			isa = PBXGroup;
+			children = (
+				7F6F18F52C5D76BC00E4D81B /* BasketViewController.swift */,
+			);
+			path = Basket;
+			sourceTree = "<group>";
+		};
+		7F6F18F12C5D768700E4D81B /* Favourite */ = {
+			isa = PBXGroup;
+			children = (
+				7F6F18F72C5D76CB00E4D81B /* FavouriteViewController.swift */,
+			);
+			path = Favourite;
+			sourceTree = "<group>";
+		};
+		7F6F18F22C5D76A100E4D81B /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				7F6F18F92C5D76D800E4D81B /* ProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,8 +329,14 @@
 			files = (
 				7F6F18BA2C5D72D600E4D81B /* ViewController.swift in Sources */,
 				7F6F18C02C5D72D600E4D81B /* Eteration_Case.xcdatamodeld in Sources */,
+				7F6F18FA2C5D76D800E4D81B /* ProfileViewController.swift in Sources */,
 				7F6F18B62C5D72D600E4D81B /* AppDelegate.swift in Sources */,
+				7F6F18EE2C5D751500E4D81B /* MainTabbarViewController.swift in Sources */,
+				7F6F18F82C5D76CB00E4D81B /* FavouriteViewController.swift in Sources */,
 				7F6F18B82C5D72D600E4D81B /* SceneDelegate.swift in Sources */,
+				7F6F18F42C5D76B000E4D81B /* HomeViewController.swift in Sources */,
+				7F6F18F62C5D76BC00E4D81B /* BasketViewController.swift in Sources */,
+				7F6F18EC2C5D750800E4D81B /* MainTabbarViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
