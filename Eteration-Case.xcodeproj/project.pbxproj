@@ -117,6 +117,7 @@
 		7F6F18B42C5D72D600E4D81B /* Eteration-Case */ = {
 			isa = PBXGroup;
 			children = (
+				7F6F19082C5D860700E4D81B /* UIComponents */,
 				7F6F18FB2C5D80E100E4D81B /* DataProvider */,
 				7F6F18E92C5D74E800E4D81B /* Scenes */,
 				7F6F18E82C5D74DA00E4D81B /* AppDelegate */,
@@ -248,6 +249,21 @@
 				7F6F19062C5D82AF00E4D81B /* ETProduct.swift */,
 			);
 			path = Product;
+			sourceTree = "<group>";
+		};
+		7F6F19082C5D860700E4D81B /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				7F6F19092C5D860F00E4D81B /* SearchBar */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		7F6F19092C5D860F00E4D81B /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SearchBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

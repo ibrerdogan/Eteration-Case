@@ -8,11 +8,26 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
+    private lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.placeholder = "Search"
+        searchBar.searchBarStyle = UISearchBar.Style.default
+        searchBar.sizeToFit()
+        searchBar.isTranslucent = false
+        searchBar.backgroundImage = UIImage()
+        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Please provide the Project title", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+
+        return searchBar
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureNavigationBar()
+        addComponents()
+        configureLayout()
         let network = NetworkService()
         Task{
             do {
@@ -23,6 +38,20 @@ class HomeViewController: UIViewController {
                 print("error")
             }
         }
+    }
+    
+    
+    private func addComponents(){
+        view.addSubview(searchBar)
+    }
+    
+    private func configureLayout(){
+        NSLayoutConstraint.activate([
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            searchBar.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
     
     func configureNavigationBar(){
