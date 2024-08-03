@@ -9,6 +9,20 @@ import Foundation
 import UIKit
 final class ProductCustomCellView: UICollectionViewCell{
     static let identifier = "ProductCustomCellView"
+    
+    private lazy var cellContainerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor.white
+        view.clipsToBounds = true
+        view.layer.shadowRadius = 2
+        view.layer.shadowOpacity = 1
+        view.layer.shadowOffset = CGSize(width: 2, height: 2)
+        view.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor
+        view.layer.masksToBounds = false
+        return view
+    }()
+    
     private lazy var productImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -65,18 +79,24 @@ final class ProductCustomCellView: UICollectionViewCell{
     
     
     private func addComponents(){
-        contentView.addSubview(productImageView)
-        contentView.addSubview(productPriceLabel)
-        contentView.addSubview(productNameLabel)
+        cellContainerView.addSubview(productImageView)
+        cellContainerView.addSubview(productPriceLabel)
+        cellContainerView.addSubview(productNameLabel)
+        cellContainerView.addSubview(producAddToChartButton)
+        contentView.addSubview(cellContainerView)
         contentView.addSubview(producAddToFavouriteButton)
-        contentView.addSubview(producAddToChartButton)
     }
     
     private func configureLayout(){
         NSLayoutConstraint.activate([
-            productImageView.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 10),
-            productImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            productImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            
+            cellContainerView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            cellContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            cellContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            
+            productImageView.topAnchor.constraint(equalTo: cellContainerView.topAnchor,constant: 10),
+            productImageView.leadingAnchor.constraint(equalTo: cellContainerView.leadingAnchor, constant: 10),
+            productImageView.trailingAnchor.constraint(equalTo: cellContainerView.trailingAnchor, constant: -10),
             productImageView.heightAnchor.constraint(equalToConstant: 150),
             
             productPriceLabel.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10),
@@ -97,7 +117,8 @@ final class ProductCustomCellView: UICollectionViewCell{
             producAddToFavouriteButton.heightAnchor.constraint(equalToConstant: 24),
             producAddToFavouriteButton.widthAnchor.constraint(equalToConstant: 24),
             
-            contentView.bottomAnchor.constraint(equalTo: producAddToChartButton.bottomAnchor, constant: 10)
+            cellContainerView.bottomAnchor.constraint(equalTo: producAddToChartButton.bottomAnchor, constant: 10),
+            contentView.bottomAnchor.constraint(equalTo: cellContainerView.bottomAnchor)
         ])
     }
     
