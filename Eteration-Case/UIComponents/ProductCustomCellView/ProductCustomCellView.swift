@@ -33,6 +33,7 @@ final class ProductCustomCellView: UICollectionViewCell{
     private lazy var producAddToFavouriteButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "star.fill"), for: .normal)
         return button
     }()
 
@@ -71,9 +72,9 @@ final class ProductCustomCellView: UICollectionViewCell{
     
     private func configureLayout(){
         NSLayoutConstraint.activate([
-            productImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            productImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            productImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            productImageView.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 10),
+            productImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            productImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             productImageView.heightAnchor.constraint(equalToConstant: 150),
             
             productPriceLabel.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 10),
@@ -94,7 +95,7 @@ final class ProductCustomCellView: UICollectionViewCell{
             producAddToFavouriteButton.heightAnchor.constraint(equalToConstant: 24),
             producAddToFavouriteButton.widthAnchor.constraint(equalToConstant: 24),
             
-            contentView.bottomAnchor.constraint(equalTo: producAddToChartButton.bottomAnchor)
+            contentView.bottomAnchor.constraint(equalTo: producAddToChartButton.bottomAnchor, constant: 10)
         ])
     }
     
