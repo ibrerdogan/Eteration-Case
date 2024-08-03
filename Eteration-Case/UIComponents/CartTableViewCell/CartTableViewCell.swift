@@ -7,6 +7,7 @@
 
 import UIKit
 final class CartTableViewCell: UITableViewCell {
+    var cartProduct: ETProductModel?
     static let identifier = "CartTableViewCell"
     private lazy var cellContainerView: UIView = {
        let view = UIView()
@@ -70,6 +71,12 @@ final class CartTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(with model: ETProductModel){
+        quantityDisplayingLabel.text = "\(model.cartQuantity)"
+        productNameLabel.text = model.name
+        productPriceLabel.text = model.price
     }
     
     private func addComponents(){

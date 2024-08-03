@@ -9,6 +9,7 @@ import UIKit
 protocol TabBarDataSource {
     var viewControllers: [UIViewController] { get }
     var networkService: NetworkService {get set}
+    var coreDataManager: CoreDataManager {get set}
 }
 
 protocol TabBarEventSource: TabBarDataSource {
@@ -18,19 +19,23 @@ protocol TabBarViewProtocol: TabBarEventSource { }
 
 
 final class MainTabbarViewModel: TabBarViewProtocol {
+    var coreDataManager: CoreDataManager
     var networkService: NetworkService
-    init(networkService: NetworkService) {
+    
+    init(networkService: NetworkService,coreDataManager: CoreDataManager) {
         self.networkService = networkService
+        self.coreDataManager = coreDataManager
     }
     var viewControllers: [UIViewController] {
-        let homeViewModel = HomeViewModel(networkService: networkService)
+        let homeViewModel = HomeViewModel(networkService: networkService,coreDataManager: coreDataManager)
         let homeViewController = HomeViewController(viewModel: homeViewModel)
         homeViewController.tabBarItem = UITabBarItem(title: nil,
                                                      image: UIImage(systemName: "house"),
                                                      selectedImage: UIImage(systemName: "house"))
         let homeNavigationController = UINavigationController(rootViewController: homeViewController)
         
-        let cartViewController = CartViewController()
+        let cartViewModel = CartViewModel(coreDataManager: coreDataManager)
+        let cartViewController = CartViewController(viewModel: cartViewModel)
         cartViewController.tabBarItem = UITabBarItem(title: nil,
                                                      image: UIImage(systemName: "cart"),
                                                      selectedImage: UIImage(systemName: "cart"))

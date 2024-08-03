@@ -12,6 +12,7 @@ protocol HomeViewModelDataSource {
     var productItemList: [ETProduct] {get set}
     var staticProductItemList: [ETProduct] {get set}
     var updateView: ()->() {get set}
+    var coreDataManager: CoreDataManager {get set}
 }
 
 protocol HomeViewModelEventSource: HomeViewModelDataSource {
@@ -21,13 +22,14 @@ protocol HomeViewModelEventSource: HomeViewModelDataSource {
 protocol HomeViewModelProtocol: HomeViewModelEventSource { }
 
 final class HomeViewModel: HomeViewModelProtocol {
+    var coreDataManager: CoreDataManager
     var updateView: () -> () = { }
     var productItemList: [ETProduct] = []
     var staticProductItemList: [ETProduct] = []
     var networkService: NetworkService
-    var coreDataManager = CoreDataManager()
-    init(networkService: NetworkService) {
+    init(networkService: NetworkService, coreDataManager: CoreDataManager) {
         self.networkService = networkService
+        self.coreDataManager = coreDataManager
         Task{
             await fethItems()
         }
