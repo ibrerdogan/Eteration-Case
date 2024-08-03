@@ -36,6 +36,7 @@ class HomeViewController: UIViewController {
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .white
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(ProductCustomCellView.self, forCellWithReuseIdentifier: ProductCustomCellView.identifier)
         return collectionView
     }()
@@ -135,7 +136,11 @@ class HomeViewController: UIViewController {
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
         }
-    
+    private func pushDetailView(with model: ETProduct){
+        let viewModel = DetailViewModel(selectedProduct: model)
+        let viewController = DetailViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
     private func setIndicatorViewvisibilty(isVisible: Bool){
         activityIndicator.isHidden = !isVisible
         isVisible ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
@@ -160,6 +165,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             strongSelf.viewModel.addCardItem(modelId: itemId)
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        pushDetailView(with: viewModel.staticProductItemList[0])
     }
 }
 
