@@ -25,7 +25,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     var productItemList: [ETProduct] = []
     var staticProductItemList: [ETProduct] = []
     var networkService: NetworkService
-    
+    var coreDataManager = CoreDataManager()
     init(networkService: NetworkService) {
         self.networkService = networkService
         Task{
@@ -56,6 +56,11 @@ final class HomeViewModel: HomeViewModelProtocol {
             productItemList = staticProductItemList
             updateView()
         }
+    }
+    
+    func addCardItem(modelId: String){
+        guard let model = staticProductItemList.first(where: {$0.id == modelId}) else {return}
+        coreDataManager.addProduct(productModel: model, isFav: false, quantity: 1)
     }
 
 }

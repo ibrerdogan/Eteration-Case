@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 final class ProductCustomCellView: UICollectionViewCell{
     static let identifier = "ProductCustomCellView"
-    
+    var addItemToCard: (String) -> () = { _ in  }
+    var itemId: String = ""
     private lazy var cellContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -58,6 +59,7 @@ final class ProductCustomCellView: UICollectionViewCell{
         button.setTitle("Add to Chart", for: .normal)
         button.backgroundColor = .blue
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(tappedAddCard), for: .touchUpInside)
         return button
     }()
     
@@ -74,6 +76,7 @@ final class ProductCustomCellView: UICollectionViewCell{
     func configureCellView(with product: ETProduct){
         productNameLabel.text = product.name
         productPriceLabel.text = product.price
+        itemId = product.id
         productImageView.setNetworkImage(urlStr: product.image)
     }
     
@@ -124,5 +127,9 @@ final class ProductCustomCellView: UICollectionViewCell{
     
     @objc func favouriteButtonTapped(){
         print("tapped fav")
+    }
+    
+    @objc func tappedAddCard(){
+        addItemToCard(itemId)
     }
 }

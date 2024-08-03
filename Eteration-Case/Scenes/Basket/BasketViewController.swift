@@ -8,10 +8,14 @@
 import UIKit
 
 class BasketViewController: UIViewController {
-
+    var coreDataManager = CoreDataManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        let data = coreDataManager.fetchAllProducts()
+        data.forEach { item in
+            print(item.brand)
+        }
     }
 
 
