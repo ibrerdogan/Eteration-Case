@@ -22,6 +22,12 @@ class CartViewController: UIViewController {
     init(viewModel: CartViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        
+        viewModel.updateView = { [weak self] in
+            guard let strongSelf = self else {return}
+            strongSelf.cartTableView.reloadData()
+            
+        }
     }
     
     required init?(coder: NSCoder) {

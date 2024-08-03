@@ -23,6 +23,7 @@
 		7F1942C92C5EB8710034DB7D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1942C82C5EB8710034DB7D /* CoreDataManager.swift */; };
 		7F1942CC2C5EBEB90034DB7D /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1942CB2C5EBEB90034DB7D /* CartTableViewCell.swift */; };
 		7F1942CE2C5EC7F90034DB7D /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1942CD2C5EC7F90034DB7D /* CartViewModel.swift */; };
+		7F1942D12C5ECC000034DB7D /* NotificationCenter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1942D02C5ECC000034DB7D /* NotificationCenter+Extension.swift */; };
 		7F4571DC2C5E482B0039E704 /* ProductCustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4571DB2C5E482B0039E704 /* ProductCustomCellView.swift */; };
 		7F6F18B62C5D72D600E4D81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18B52C5D72D600E4D81B /* AppDelegate.swift */; };
 		7F6F18B82C5D72D600E4D81B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18B72C5D72D600E4D81B /* SceneDelegate.swift */; };
@@ -77,6 +78,7 @@
 		7F1942C82C5EB8710034DB7D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		7F1942CB2C5EBEB90034DB7D /* CartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
 		7F1942CD2C5EC7F90034DB7D /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
+		7F1942D02C5ECC000034DB7D /* NotificationCenter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Extension.swift"; sourceTree = "<group>"; };
 		7F4571DB2C5E482B0039E704 /* ProductCustomCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCustomCellView.swift; sourceTree = "<group>"; };
 		7F6F18B22C5D72D600E4D81B /* Eteration-Case.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eteration-Case.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6F18B52C5D72D600E4D81B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				7F1942A72C5E737F0034DB7D /* UIImageView+Extensions.swift */,
 				7F1942B72C5E785A0034DB7D /* UIFont+Extension.swift */,
 				7F1942B92C5E79D30034DB7D /* UIColor+Extension.swift */,
+				7F1942D02C5ECC000034DB7D /* NotificationCenter+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 				7F1942C42C5EB70F0034DB7D /* ETProductModel+CoreDataClass.swift in Sources */,
 				7F1942B82C5E785A0034DB7D /* UIFont+Extension.swift in Sources */,
 				7F6F18EE2C5D751500E4D81B /* MainTabbarViewController.swift in Sources */,
+				7F1942D12C5ECC000034DB7D /* NotificationCenter+Extension.swift in Sources */,
 				7F6F18F82C5D76CB00E4D81B /* FavouriteViewController.swift in Sources */,
 				7F6F19002C5D812400E4D81B /* APIEndpoint.swift in Sources */,
 				7F1942CC2C5EBEB90034DB7D /* CartTableViewCell.swift in Sources */,
