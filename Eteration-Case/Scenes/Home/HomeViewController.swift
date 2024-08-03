@@ -22,6 +22,12 @@ class HomeViewController: UIViewController {
         return searchBar
     }()
     
+    private lazy var filterContainerView: FilterContainerView = {
+       let view = FilterContainerView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private lazy var productCollectionView: UICollectionView = {
         let collectionView =  UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -55,6 +61,7 @@ class HomeViewController: UIViewController {
     
     private func addComponents(){
         view.addSubview(searchBar)
+        view.addSubview(filterContainerView)
         view.addSubview(productCollectionView)
     }
     
@@ -65,7 +72,11 @@ class HomeViewController: UIViewController {
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             searchBar.heightAnchor.constraint(equalToConstant: 50),
             
-            productCollectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 10),
+            filterContainerView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 10),
+            filterContainerView.leadingAnchor.constraint(equalTo: searchBar.leadingAnchor),
+            filterContainerView.trailingAnchor.constraint(equalTo: searchBar.trailingAnchor),
+            
+            productCollectionView.topAnchor.constraint(equalTo: filterContainerView.bottomAnchor, constant: 10),
             productCollectionView.leadingAnchor.constraint(equalTo: searchBar.leadingAnchor),
             productCollectionView.trailingAnchor.constraint(equalTo: searchBar.trailingAnchor),
             productCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
