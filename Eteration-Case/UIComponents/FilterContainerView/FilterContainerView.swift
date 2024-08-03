@@ -20,6 +20,8 @@ final class FilterContainerView: UIView{
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.text = "Filter:"
+        label.font = .montserratRegular(size: 18)
+        label.textColor = .black
         return label
     }()
     
@@ -28,6 +30,7 @@ final class FilterContainerView: UIView{
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Select Filter", for: .normal)
         button.backgroundColor = .gray
+        button.titleLabel?.font = .montserratRegular(size: 14)
         return button
     }()
     
