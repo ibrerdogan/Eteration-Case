@@ -30,10 +30,11 @@ final class MainTabbarViewModel: TabBarViewProtocol {
                                                      selectedImage: UIImage(systemName: "house"))
         let homeNavigationController = UINavigationController(rootViewController: homeViewController)
         
-        let basketViewController = BasketViewController()
-        basketViewController.tabBarItem = UITabBarItem(title: nil,
+        let cartViewController = CartViewController()
+        cartViewController.tabBarItem = UITabBarItem(title: nil,
                                                      image: UIImage(systemName: "cart"),
                                                      selectedImage: UIImage(systemName: "cart"))
+        let cartNavigationController = UINavigationController(rootViewController: cartViewController)
         
         let favouriteViewcontroller = FavouriteViewController()
         favouriteViewcontroller.tabBarItem = UITabBarItem(title: nil,
@@ -44,6 +45,6 @@ final class MainTabbarViewModel: TabBarViewProtocol {
         profileViewController.tabBarItem = UITabBarItem(title: nil,
                                                      image: UIImage(systemName: "person"),
                                                      selectedImage: UIImage(systemName: "person"))
-        return [homeNavigationController,basketViewController,favouriteViewcontroller,profileViewController]
+        return [homeNavigationController,cartNavigationController,favouriteViewcontroller,profileViewController]
     }
 }
