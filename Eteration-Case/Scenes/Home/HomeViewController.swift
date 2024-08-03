@@ -21,6 +21,16 @@ class HomeViewController: UIViewController {
 
         return searchBar
     }()
+    
+    private lazy var productCollectionView: UICollectionView = {
+        let collectionView =  UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = .white
+        collectionView.dataSource = self
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        return collectionView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +53,7 @@ class HomeViewController: UIViewController {
     
     private func addComponents(){
         view.addSubview(searchBar)
+        view.addSubview(productCollectionView)
     }
     
     private func configureLayout(){
@@ -50,7 +61,12 @@ class HomeViewController: UIViewController {
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            searchBar.heightAnchor.constraint(equalToConstant: 50)
+            searchBar.heightAnchor.constraint(equalToConstant: 50),
+            
+            productCollectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 10),
+            productCollectionView.leadingAnchor.constraint(equalTo: searchBar.leadingAnchor),
+            productCollectionView.trailingAnchor.constraint(equalTo: searchBar.trailingAnchor),
+            productCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ])
     }
     
@@ -71,6 +87,33 @@ class HomeViewController: UIViewController {
             // Hide the back button
             navigationItem.hidesBackButton = true
     }
+    
+    private func createLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(100))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
+        group.interItemSpacing = .fixed(10)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 10
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
+        }
+}
 
-
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? UICollectionViewCell else {return UICollectionViewCell()}
+        cell.backgroundColor = .lightGray
+        return cell
+    }
+    
+    
 }
