@@ -9,8 +9,9 @@ import Foundation
 import UIKit
 final class ProductCustomCellView: UICollectionViewCell{
     static let identifier = "ProductCustomCellView"
-    var addItemToCard: (String) -> () = { _ in  }
+    var addItemToCard: (ETProduct) -> () = { _ in  }
     var itemId: String = ""
+    var product: ETProduct?
     private lazy var cellContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -77,6 +78,7 @@ final class ProductCustomCellView: UICollectionViewCell{
         productNameLabel.text = product.name
         productPriceLabel.text = product.price
         itemId = product.id
+        self.product = product
         productImageView.setNetworkImage(urlStr: product.image)
     }
     
@@ -130,6 +132,7 @@ final class ProductCustomCellView: UICollectionViewCell{
     }
     
     @objc func tappedAddCard(){
-        addItemToCard(itemId)
+        guard let product = product else {return}
+        addItemToCard(product)
     }
 }

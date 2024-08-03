@@ -60,8 +60,7 @@ final class HomeViewModel: HomeViewModelProtocol {
         }
     }
     
-    func addCardItem(modelId: String){
-        guard let model = staticProductItemList.first(where: {$0.id == modelId}) else {return}
+    func addCardItem(model: ETProduct){
         coreDataManager.addProduct(productModel: model, isFav: false, quantity: 1)
         NotificationCenter.default.post(name: .cartUpdated, object: nil)
     }
