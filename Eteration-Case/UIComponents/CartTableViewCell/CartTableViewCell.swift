@@ -8,6 +8,7 @@
 import UIKit
 final class CartTableViewCell: UITableViewCell {
     var cartProduct: ETProductModel?
+    var productQuantityChanged: (ETProductModel) -> () = { _ in}
     static let identifier = "CartTableViewCell"
     private lazy var cellContainerView: UIView = {
        let view = UIView()
@@ -74,6 +75,7 @@ final class CartTableViewCell: UITableViewCell {
     }
     
     func configure(with model: ETProductModel){
+        cartProduct = model
         quantityDisplayingLabel.text = "\(model.cartQuantity)"
         productNameLabel.text = model.name
         productPriceLabel.text = model.price
@@ -124,10 +126,21 @@ final class CartTableViewCell: UITableViewCell {
     }
     
     @objc func increaseQuantity(){
-        print("increaseQuantity")
+        guard let product = cartProduct else {return}
+        product.cartQuantity += 1
+        productQuantityChanged(product)
     }
     
     @objc func decreaseQuantity(){
-        print("decreaseQuantity")
+        guard let product = cartProduct else {return}
+        product.cartQuantity -= 1
+        productQuantityChanged(product)
     }
+    
+    //func changeQuantity(quantity: Int16?){
+    //    guard let quantity = quantity else {return}
+    //    productQuantityChanged(quantity)
+    //}
+    
+    
 }

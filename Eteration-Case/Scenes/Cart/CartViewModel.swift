@@ -36,6 +36,11 @@ final class CartViewModel: CartViewModelProtocol {
         updateView()
     }
     
+    func updateCartWithModel(with model: ETProductModel){
+        coreDataManager.updateProduct(id: model.id!, isFav: model.isFavourite, quantity: Int(model.cartQuantity))
+        getCartProducts()
+    }
+    
     func configureObservables() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: .cartUpdated, object: nil)
     }

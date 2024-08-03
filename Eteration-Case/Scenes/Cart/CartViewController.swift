@@ -89,6 +89,12 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource{
             return UITableViewCell()
         }
         cell.configure(with: viewModel.cartProducts[indexPath.row])
+        cell.selectionStyle = .none
+        cell.productQuantityChanged = {[weak self] model in
+            guard let strongSelf = self else {return}
+            strongSelf.viewModel.updateCartWithModel(with: model)
+            
+        }
         return cell
     }
     
