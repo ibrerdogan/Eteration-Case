@@ -86,7 +86,7 @@ class HomeViewController: UIViewController {
     func configureNavigationBar(){
         let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground() // This ensures the background color respects safe area
-            appearance.backgroundColor = .blue
+        appearance.backgroundColor = .mainBlueColor
             
             // Apply the appearance to the navigation bar
             navigationController?.navigationBar.standardAppearance = appearance

@@ -33,7 +33,7 @@ final class ProductCustomCellView: UICollectionViewCell{
     private lazy var producAddToFavouriteButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        button.setImage(UIImage(systemName: "star.fill")?.withTintColor(.mainGrayColor!, renderingMode: .alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(favouriteButtonTapped), for: .touchUpInside)
         return button
     }()

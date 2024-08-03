@@ -29,7 +29,7 @@ final class FilterContainerView: UIView{
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Select Filter", for: .normal)
-        button.backgroundColor = .gray
+        button.backgroundColor = .mainGrayColor
         button.titleLabel?.font = .montserratRegular(size: 14)
         return button
     }()

@@ -16,6 +16,7 @@
 		7F1942B42C5E779F0034DB7D /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7F1942B32C5E779F0034DB7D /* Montserrat-SemiBold.ttf */; };
 		7F1942B62C5E77AF0034DB7D /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7F1942B52C5E77AF0034DB7D /* Montserrat-Light.ttf */; };
 		7F1942B82C5E785A0034DB7D /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1942B72C5E785A0034DB7D /* UIFont+Extension.swift */; };
+		7F1942BA2C5E79D30034DB7D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1942B92C5E79D30034DB7D /* UIColor+Extension.swift */; };
 		7F4571DC2C5E482B0039E704 /* ProductCustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4571DB2C5E482B0039E704 /* ProductCustomCellView.swift */; };
 		7F6F18B62C5D72D600E4D81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18B52C5D72D600E4D81B /* AppDelegate.swift */; };
 		7F6F18B82C5D72D600E4D81B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18B72C5D72D600E4D81B /* SceneDelegate.swift */; };
@@ -63,6 +64,7 @@
 		7F1942B32C5E779F0034DB7D /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		7F1942B52C5E77AF0034DB7D /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		7F1942B72C5E785A0034DB7D /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		7F1942B92C5E79D30034DB7D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		7F4571DB2C5E482B0039E704 /* ProductCustomCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCustomCellView.swift; sourceTree = "<group>"; };
 		7F6F18B22C5D72D600E4D81B /* Eteration-Case.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eteration-Case.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6F18B52C5D72D600E4D81B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			children = (
 				7F1942A72C5E737F0034DB7D /* UIImageView+Extensions.swift */,
 				7F1942B72C5E785A0034DB7D /* UIFont+Extension.swift */,
+				7F1942B92C5E79D30034DB7D /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F6F18FE2C5D810D00E4D81B /* NetworkService.swift in Sources */,
+				7F1942BA2C5E79D30034DB7D /* UIColor+Extension.swift in Sources */,
 				7F6F18BA2C5D72D600E4D81B /* ViewController.swift in Sources */,
 				7F6F18C02C5D72D600E4D81B /* Eteration_Case.xcdatamodeld in Sources */,
 				7F6F18FA2C5D76D800E4D81B /* ProfileViewController.swift in Sources */,
