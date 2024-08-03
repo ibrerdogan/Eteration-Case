@@ -19,12 +19,24 @@ class CartViewController: UIViewController {
         tableView.separatorStyle = .none
         return tableView
     }()
+    
+    private lazy var infoLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .montserratSemiBold(size: 18)
+        label.textColor = .mainBlueColor
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.text = "Sepette hiç ürününüz yok"
+        return label
+    }()
     init(viewModel: CartViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         
         viewModel.updateView = { [weak self] in
             guard let strongSelf = self else {return}
+            strongSelf.configureView(isNoProduct: strongSelf.viewModel.cartProducts.count == 0)
             strongSelf.cartTableView.reloadData()
             
         }
@@ -37,14 +49,20 @@ class CartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        configureView(isNoProduct: false)
         configureNavigationBar()
         addComponents()
         configureLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureView(isNoProduct: viewModel.cartProducts.count == 0)
+    }
     private func addComponents()
     {
         view.addSubview(cartTableView)
+        view.addSubview(infoLabel)
     }
     
     private func configureLayout(){
@@ -53,8 +71,16 @@ class CartViewController: UIViewController {
             cartTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             cartTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cartTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            cartTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            cartTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            infoLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
+    }
+    
+    private func configureView(isNoProduct: Bool){
+        cartTableView.isHidden = isNoProduct
+        infoLabel.isHidden = !isNoProduct
     }
     
     func configureNavigationBar(){
