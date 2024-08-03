@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F4571DC2C5E482B0039E704 /* ProductCustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4571DB2C5E482B0039E704 /* ProductCustomCellView.swift */; };
 		7F6F18B62C5D72D600E4D81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18B52C5D72D600E4D81B /* AppDelegate.swift */; };
 		7F6F18B82C5D72D600E4D81B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18B72C5D72D600E4D81B /* SceneDelegate.swift */; };
 		7F6F18BA2C5D72D600E4D81B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18B92C5D72D600E4D81B /* ViewController.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F4571DB2C5E482B0039E704 /* ProductCustomCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCustomCellView.swift; sourceTree = "<group>"; };
 		7F6F18B22C5D72D600E4D81B /* Eteration-Case.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eteration-Case.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6F18B52C5D72D600E4D81B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F6F18B72C5D72D600E4D81B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F4571DA2C5E48120039E704 /* ProductCustomCellView */ = {
+			isa = PBXGroup;
+			children = (
+				7F4571DB2C5E482B0039E704 /* ProductCustomCellView.swift */,
+			);
+			path = ProductCustomCellView;
+			sourceTree = "<group>";
+		};
 		7F6F18A92C5D72D600E4D81B = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +264,7 @@
 		7F6F19082C5D860700E4D81B /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				7F4571DA2C5E48120039E704 /* ProductCustomCellView */,
 				7F6F19092C5D860F00E4D81B /* SearchBar */,
 			);
 			path = UIComponents;
@@ -400,6 +411,7 @@
 				7F6F18C02C5D72D600E4D81B /* Eteration_Case.xcdatamodeld in Sources */,
 				7F6F18FA2C5D76D800E4D81B /* ProfileViewController.swift in Sources */,
 				7F6F18B62C5D72D600E4D81B /* AppDelegate.swift in Sources */,
+				7F4571DC2C5E482B0039E704 /* ProductCustomCellView.swift in Sources */,
 				7F6F18EE2C5D751500E4D81B /* MainTabbarViewController.swift in Sources */,
 				7F6F18F82C5D76CB00E4D81B /* FavouriteViewController.swift in Sources */,
 				7F6F19002C5D812400E4D81B /* APIEndpoint.swift in Sources */,
