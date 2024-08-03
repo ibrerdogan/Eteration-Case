@@ -17,7 +17,9 @@ class HomeViewController: UIViewController {
         searchBar.sizeToFit()
         searchBar.isTranslucent = false
         searchBar.backgroundImage = UIImage()
-        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Please provide the Project title", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
+        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search",
+                                                                             attributes: [NSAttributedString.Key.foregroundColor: UIColor.mainBlueColor?.withAlphaComponent(0.3) ?? .gray,
+                                                                                          NSAttributedString.Key.font: UIFont.montserratMedium(size: 18)])
         searchBar.delegate = self
         return searchBar
     }()
@@ -81,17 +83,17 @@ class HomeViewController: UIViewController {
     private func configureLayout(){
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             searchBar.heightAnchor.constraint(equalToConstant: 50),
             
             filterContainerView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 10),
-            filterContainerView.leadingAnchor.constraint(equalTo: searchBar.leadingAnchor),
-            filterContainerView.trailingAnchor.constraint(equalTo: searchBar.trailingAnchor),
+            filterContainerView.leadingAnchor.constraint(equalTo: searchBar.leadingAnchor, constant: 10),
+            filterContainerView.trailingAnchor.constraint(equalTo: searchBar.trailingAnchor, constant: -10),
             
             productCollectionView.topAnchor.constraint(equalTo: filterContainerView.bottomAnchor, constant: 10),
-            productCollectionView.leadingAnchor.constraint(equalTo: searchBar.leadingAnchor),
-            productCollectionView.trailingAnchor.constraint(equalTo: searchBar.trailingAnchor),
+            productCollectionView.leadingAnchor.constraint(equalTo: filterContainerView.leadingAnchor),
+            productCollectionView.trailingAnchor.constraint(equalTo: filterContainerView.trailingAnchor),
             productCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             
             activityIndicator.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
