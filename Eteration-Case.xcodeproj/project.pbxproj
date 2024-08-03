@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7F1942A42C5E73410034DB7D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7F1942A32C5E73410034DB7D /* Kingfisher */; };
+		7F1942A82C5E737F0034DB7D /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1942A72C5E737F0034DB7D /* UIImageView+Extensions.swift */; };
 		7F4571DC2C5E482B0039E704 /* ProductCustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4571DB2C5E482B0039E704 /* ProductCustomCellView.swift */; };
 		7F6F18B62C5D72D600E4D81B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18B52C5D72D600E4D81B /* AppDelegate.swift */; };
 		7F6F18B82C5D72D600E4D81B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18B72C5D72D600E4D81B /* SceneDelegate.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F1942A72C5E737F0034DB7D /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		7F4571DB2C5E482B0039E704 /* ProductCustomCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCustomCellView.swift; sourceTree = "<group>"; };
 		7F6F18B22C5D72D600E4D81B /* Eteration-Case.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eteration-Case.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6F18B52C5D72D600E4D81B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F1942A52C5E73670034DB7D /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				7F1942A62C5E736D0034DB7D /* Extensions */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		7F1942A62C5E736D0034DB7D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7F1942A72C5E737F0034DB7D /* UIImageView+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		7F4571DA2C5E48120039E704 /* ProductCustomCellView */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +147,7 @@
 		7F6F18B42C5D72D600E4D81B /* Eteration-Case */ = {
 			isa = PBXGroup;
 			children = (
+				7F1942A52C5E73670034DB7D /* Helper */,
 				7F6F19082C5D860700E4D81B /* UIComponents */,
 				7F6F18FB2C5D80E100E4D81B /* DataProvider */,
 				7F6F18E92C5D74E800E4D81B /* Scenes */,
@@ -428,6 +447,7 @@
 				7F6F18F42C5D76B000E4D81B /* HomeViewController.swift in Sources */,
 				7F6F19022C5D815600E4D81B /* NetworkError.swift in Sources */,
 				7F6F18F62C5D76BC00E4D81B /* BasketViewController.swift in Sources */,
+				7F1942A82C5E737F0034DB7D /* UIImageView+Extensions.swift in Sources */,
 				7F6F18EC2C5D750800E4D81B /* MainTabbarViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -34,6 +34,7 @@ final class ProductCustomCellView: UICollectionViewCell{
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        button.addTarget(self, action: #selector(favouriteButtonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -59,6 +60,7 @@ final class ProductCustomCellView: UICollectionViewCell{
     func configureCellView(with product: ETProduct){
         productNameLabel.text = product.name
         productPriceLabel.text = product.price
+        productImageView.setNetworkImage(urlStr: product.image)
     }
     
     
@@ -99,4 +101,7 @@ final class ProductCustomCellView: UICollectionViewCell{
         ])
     }
     
+    @objc func favouriteButtonTapped(){
+        print("tapped fav")
+    }
 }
