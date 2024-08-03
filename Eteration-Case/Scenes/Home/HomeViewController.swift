@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
         searchBar.isTranslucent = false
         searchBar.backgroundImage = UIImage()
         searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Please provide the Project title", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
-
+        searchBar.delegate = self
         return searchBar
     }()
     
@@ -155,6 +155,15 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.configureCellView(with: viewModel.productItemList[indexPath.row])
         return cell
     }
+}
+
+extension HomeViewController: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        viewModel.searchProduct(with: searchText)
+    }
     
-    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
+        viewModel.searchProduct(with: "")
+    }
+
 }
