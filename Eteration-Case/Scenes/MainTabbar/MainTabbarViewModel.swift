@@ -23,7 +23,8 @@ final class MainTabbarViewModel: TabBarViewProtocol {
         self.networkService = networkService
     }
     var viewControllers: [UIViewController] {
-        let homeViewController = HomeViewController()
+        let homeViewModel = HomeViewModel(networkService: networkService)
+        let homeViewController = HomeViewController(viewModel: homeViewModel)
         homeViewController.tabBarItem = UITabBarItem(title: nil,
                                                      image: UIImage(systemName: "house"),
                                                      selectedImage: UIImage(systemName: "house"))

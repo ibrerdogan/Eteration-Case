@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    var items = [ETProduct]()
+    var viewModel: HomeViewModel
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -37,23 +37,35 @@ class HomeViewController: UIViewController {
         collectionView.register(ProductCustomCellView.self, forCellWithReuseIdentifier: ProductCustomCellView.identifier)
         return collectionView
     }()
+    
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.style = .large
+        return indicator
+    }()
+    
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        setIndicatorViewvisibilty(isVisible: true)
         configureNavigationBar()
         addComponents()
         configureLayout()
-        let network = NetworkService()
-        Task{
-            do {
-                let products : [ETProduct] = try await network.request(endpoint: .getProducts)
-                items = products
-                productCollectionView.reloadData()
-                print("\(products)")
-            }
-            catch{
-                print("error")
+        viewModel.updateView = { [weak self] in
+            guard let strongSelf = self else {return}
+            DispatchQueue.main.async {
+                strongSelf.setIndicatorViewvisibilty(isVisible: false)
+                strongSelf.productCollectionView.reloadData()
             }
         }
     }
@@ -63,6 +75,7 @@ class HomeViewController: UIViewController {
         view.addSubview(searchBar)
         view.addSubview(filterContainerView)
         view.addSubview(productCollectionView)
+        view.addSubview(activityIndicator)
     }
     
     private func configureLayout(){
@@ -79,7 +92,12 @@ class HomeViewController: UIViewController {
             productCollectionView.topAnchor.constraint(equalTo: filterContainerView.bottomAnchor, constant: 10),
             productCollectionView.leadingAnchor.constraint(equalTo: searchBar.leadingAnchor),
             productCollectionView.trailingAnchor.constraint(equalTo: searchBar.trailingAnchor),
-            productCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+            productCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            
+            activityIndicator.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            activityIndicator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            activityIndicator.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            activityIndicator.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
     
@@ -115,16 +133,26 @@ class HomeViewController: UIViewController {
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
         }
+    
+    private func setIndicatorViewvisibilty(isVisible: Bool){
+        activityIndicator.isHidden = !isVisible
+        isVisible ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
+        view.addSubview(searchBar)
+        [searchBar,filterContainerView,productCollectionView].forEach { [weak self] view in
+            guard let strongSelf = self else {return}
+            view.isHidden = isVisible
+        }
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
+        return viewModel.productItemList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCustomCellView.identifier, for: indexPath) as? ProductCustomCellView else {return UICollectionViewCell()}
-        cell.configureCellView(with: items[indexPath.row])
+        cell.configureCellView(with: viewModel.productItemList[indexPath.row])
         return cell
     }
     
