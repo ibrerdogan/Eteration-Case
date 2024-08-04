@@ -55,7 +55,7 @@ final class DetailViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        configureNavigationBar()
+        configureNavigationBar(title: viewModel.selectedProduct.name, hideBackButton: false)
         addComponents()
         configureLayout()
     }
@@ -86,22 +86,5 @@ final class DetailViewController: UIViewController{
         ])
     }
     
-    func configureNavigationBar(){
-        let appearance = UINavigationBarAppearance()
-            appearance.configureWithOpaqueBackground() // This ensures the background color respects safe area
-        appearance.backgroundColor = .mainBlueColor
-            
-            // Apply the appearance to the navigation bar
-            navigationController?.navigationBar.standardAppearance = appearance
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
-            navigationController?.navigationBar.compactAppearance = appearance
-            navigationController?.navigationBar.isTranslucent = false // Optional: make the bar non-translucent
-            
-            // Set the navigation bar title
-        self.navigationItem.title = viewModel.selectedProduct.name
-            
-            // Hide the back button
-            navigationItem.hidesBackButton = false
-    }
 
 }

@@ -71,7 +71,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setIndicatorViewvisibilty(isVisible: true)
-        configureNavigationBar()
+        configureNavigationBar(title: "Home", hideBackButton: true)
         addComponents()
         configureLayout()
         viewModel.updateView = { [weak self] in
@@ -114,23 +114,6 @@ class HomeViewController: UIViewController {
         ])
     }
     
-    func configureNavigationBar(){
-        let appearance = UINavigationBarAppearance()
-            appearance.configureWithOpaqueBackground() // This ensures the background color respects safe area
-        appearance.backgroundColor = .mainBlueColor
-            
-            // Apply the appearance to the navigation bar
-            navigationController?.navigationBar.standardAppearance = appearance
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
-            navigationController?.navigationBar.compactAppearance = appearance
-            navigationController?.navigationBar.isTranslucent = false // Optional: make the bar non-translucent
-            
-            // Set the navigation bar title
-        self.navigationItem.title = "Home"
-            
-            // Hide the back button
-            navigationItem.hidesBackButton = true
-    }
     
     private func createLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))

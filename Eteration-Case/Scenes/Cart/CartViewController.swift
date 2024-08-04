@@ -50,7 +50,7 @@ class CartViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureView(isNoProduct: false)
-        configureNavigationBar()
+        configureNavigationBar(title: "Cart", hideBackButton: true)
         addComponents()
         configureLayout()
     }
@@ -82,26 +82,6 @@ class CartViewController: UIViewController {
         cartTableView.isHidden = isNoProduct
         infoLabel.isHidden = !isNoProduct
     }
-    
-    func configureNavigationBar(){
-        let appearance = UINavigationBarAppearance()
-            appearance.configureWithOpaqueBackground() // This ensures the background color respects safe area
-        appearance.backgroundColor = .mainBlueColor
-            
-            // Apply the appearance to the navigation bar
-            navigationController?.navigationBar.standardAppearance = appearance
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
-            navigationController?.navigationBar.compactAppearance = appearance
-            navigationController?.navigationBar.isTranslucent = false // Optional: make the bar non-translucent
-            
-            // Set the navigation bar title
-        self.navigationItem.title = "Cart"
-            
-            // Hide the back button
-            navigationItem.hidesBackButton = true
-    }
-
-
 }
 
 

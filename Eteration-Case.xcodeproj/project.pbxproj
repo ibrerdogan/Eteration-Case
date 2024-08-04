@@ -50,6 +50,7 @@
 		7FC60A712C5FA83A00CB7247 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC60A702C5FA83A00CB7247 /* Enums.swift */; };
 		7FC60A732C5FA9BB00CB7247 /* FilterCustomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC60A722C5FA9BB00CB7247 /* FilterCustomViewCell.swift */; };
 		7FC60A762C5FAF2D00CB7247 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC60A752C5FAF2D00CB7247 /* FilterViewModel.swift */; };
+		7FC60A7A2C5FDBAF00CB7247 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC60A792C5FDBAF00CB7247 /* UIViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		7FC60A702C5FA83A00CB7247 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		7FC60A722C5FA9BB00CB7247 /* FilterCustomViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCustomViewCell.swift; sourceTree = "<group>"; };
 		7FC60A752C5FAF2D00CB7247 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
+		7FC60A792C5FDBAF00CB7247 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				7F1942B72C5E785A0034DB7D /* UIFont+Extension.swift */,
 				7F1942B92C5E79D30034DB7D /* UIColor+Extension.swift */,
 				7F1942D02C5ECC000034DB7D /* NotificationCenter+Extension.swift */,
+				7FC60A792C5FDBAF00CB7247 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				7F1942BA2C5E79D30034DB7D /* UIColor+Extension.swift in Sources */,
 				7F6F18BA2C5D72D600E4D81B /* ViewController.swift in Sources */,
 				7F1942BC2C5E7C100034DB7D /* HomeViewModel.swift in Sources */,
+				7FC60A7A2C5FDBAF00CB7247 /* UIViewController+Extension.swift in Sources */,
 				7F6F18C02C5D72D600E4D81B /* Eteration_Case.xcdatamodeld in Sources */,
 				7FC60A732C5FA9BB00CB7247 /* FilterCustomViewCell.swift in Sources */,
 				7FC60A6E2C5FA76F00CB7247 /* FilterCustomView.swift in Sources */,
