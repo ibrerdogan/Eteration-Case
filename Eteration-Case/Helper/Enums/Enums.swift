@@ -9,4 +9,5 @@ import Foundation
 enum FilterType : String{
     case brand = "Brand"
     case name = "Name"
+    case model = "Model"
 }

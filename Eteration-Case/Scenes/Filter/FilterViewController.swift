@@ -77,6 +77,8 @@ final class FilterViewController: UIViewController {
                 itemList = viewModel.uniqueBrands
             case .name:
                 itemList = viewModel.uniqueNames
+            case .model:
+                itemList = viewModel.uniqueNames
             }
             let filterView = FilterCustomView(filterTypeList: itemList,filterType: type)
             filterView.applieFilter = {[weak self] isSelect,filterText,filterType in

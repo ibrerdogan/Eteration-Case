@@ -13,6 +13,7 @@ protocol FilterViewModelDataSource {
     var filterTypeList: [FilterType] {get set}
     var uniqueNames: [String] {get set}
     var uniqueBrands: [String] {get set}
+    var uniqueModels: [String] {get set}
 }
 
 protocol FilterViewModelEventSource: FilterViewModelDataSource {
@@ -26,6 +27,7 @@ final class FilterViewModel: FilterViewModelProtocol {
     var filteredItemList =  [ETProduct]()
     var uniqueNames = [String]()
     var uniqueBrands = [String]()
+    var uniqueModels = [String]()
     var filterTypeList = [FilterType]()
     var productItemList: [ETProduct]
     
@@ -34,6 +36,7 @@ final class FilterViewModel: FilterViewModelProtocol {
         self.filteredItemList = productItemList
         getProductNames()
         getProductBrand()
+        getProductModels()
     }
     
     func getProductNames() {
@@ -45,8 +48,15 @@ final class FilterViewModel: FilterViewModelProtocol {
     
     func getProductBrand() {
         uniqueBrands = Array(Set(productItemList.map { $0.brand })).sorted()
-        if !uniqueNames.isEmpty{
+        if !uniqueBrands.isEmpty{
             filterTypeList.append(.brand)
+        }
+    }
+    
+    func getProductModels() {
+        uniqueModels = Array(Set(productItemList.map { $0.model })).sorted()
+        if !uniqueModels.isEmpty{
+            filterTypeList.append(.model)
         }
     }
     
@@ -58,6 +68,8 @@ final class FilterViewModel: FilterViewModelProtocol {
                 filteredItemList = filteredItemList.filter({$0.brand == filterText})
             case .name:
                 filteredItemList = filteredItemList.filter({$0.name == filterText})
+            case .model:
+                filteredItemList = filteredItemList.filter({$0.model == filterText})
             }
         }else {
             filteredItemList = productItemList
