@@ -164,6 +164,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             guard let strongSelf = self else {return}
             strongSelf.viewModel.addCardItem(model: model)
         }
+        cell.addItemToFav = {[weak self] model in
+            guard let strongSelf = self else {return}
+            strongSelf.viewModel.addFavItem(model: model)
+        }
         return cell
     }
     

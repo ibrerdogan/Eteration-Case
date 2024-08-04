@@ -10,6 +10,7 @@ import UIKit
 final class ProductCustomCellView: UICollectionViewCell{
     static let identifier = "ProductCustomCellView"
     var addItemToCard: (ETProduct) -> () = { _ in  }
+    var addItemToFav: (ETProduct) -> () = { _ in  }
     var itemId: String = ""
     var product: ETProduct?
     private lazy var cellContainerView: UIView = {
@@ -128,7 +129,8 @@ final class ProductCustomCellView: UICollectionViewCell{
     }
     
     @objc func favouriteButtonTapped(){
-        print("tapped fav")
+        guard let product = product else {return}
+        addItemToFav(product)
     }
     
     @objc func tappedAddCard(){
