@@ -47,7 +47,7 @@ class CoreDataManager {
         product.brand = productModel.brand
         product.id = productModel.id
         product.isFavourite = productModel.isFav ?? false
-        product.cartQuantity = product.cartQuantity
+        product.cartQuantity = productModel.productQuantity ?? 0
         
         saveContext()
     }

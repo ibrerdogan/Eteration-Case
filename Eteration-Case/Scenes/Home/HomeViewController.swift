@@ -159,7 +159,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCustomCellView.identifier, for: indexPath) as? ProductCustomCellView else {return UICollectionViewCell()}
-        cell.configureCellView(with: viewModel.productItemList[indexPath.row])
+        var model = viewModel.productItemList[indexPath.row]
+        model.isFav = viewModel.productIsAddedFav(with: model.id)
+        cell.configureCellView(with: model)
         cell.addItemToCard = {[weak self] model in
             guard let strongSelf = self else {return}
             strongSelf.viewModel.addCardItem(model: model)

@@ -13,6 +13,7 @@ protocol HomeViewModelDataSource {
     var staticProductItemList: [ETProduct] {get set}
     var updateView: ()->() {get set}
     var coreDataManager: CoreDataManager {get set}
+    var favProductList: [String] {get set}
 }
 
 protocol HomeViewModelEventSource: HomeViewModelDataSource {
@@ -22,6 +23,7 @@ protocol HomeViewModelEventSource: HomeViewModelDataSource {
 protocol HomeViewModelProtocol: HomeViewModelEventSource { }
 
 final class HomeViewModel: HomeViewModelProtocol {
+    var favProductList = [String]()
     var coreDataManager: CoreDataManager
     var updateView: () -> () = { }
     var productItemList: [ETProduct] = []
@@ -30,6 +32,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     init(networkService: NetworkService, coreDataManager: CoreDataManager) {
         self.networkService = networkService
         self.coreDataManager = coreDataManager
+        getFavItems()
         Task{
             await fethItems()
         }
@@ -69,9 +72,17 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     func addFavItem(model: ETProduct){
         var changedModel = model
-        changedModel.isFav = true
         coreDataManager.updateProduct(productModel: changedModel)
         NotificationCenter.default.post(name: .cartUpdated, object: nil)
+    }
+    
+    func getFavItems(){
+        let favProducts = coreDataManager.fetchAllProducts().filter({$0.isFavourite})
+        favProductList = favProducts.map({$0.id ?? ""})
+    }
+    
+    func productIsAddedFav(with id: String) -> Bool {
+        favProductList.contains(where: {$0 == id})
     }
 
 }

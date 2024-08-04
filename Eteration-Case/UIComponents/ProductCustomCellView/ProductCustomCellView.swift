@@ -80,6 +80,7 @@ final class ProductCustomCellView: UICollectionViewCell{
         productPriceLabel.text = product.price
         itemId = product.id
         self.product = product
+        configureFavButton()
         productImageView.setNetworkImage(urlStr: product.image)
     }
     
@@ -128,13 +129,31 @@ final class ProductCustomCellView: UICollectionViewCell{
         ])
     }
     
+    func configureFavButton(){
+        guard let product = product, let isFav = product.isFav else {return}
+        let image = UIImage(systemName: "star.fill")?.withTintColor(isFav ? .mainYellowColor ?? .yellow : .mainGrayColor ?? .gray, renderingMode: .alwaysOriginal)
+        producAddToFavouriteButton.setImage(image, for: .normal)
+    }
+    
     @objc func favouriteButtonTapped(){
         guard let product = product else {return}
-        addItemToFav(product)
+        var manProduct = product
+        toggleBoolValue(&manProduct.isFav)
+        self.product = manProduct
+        configureFavButton()
+        addItemToFav(manProduct)
     }
     
     @objc func tappedAddCard(){
         guard let product = product else {return}
         addItemToCard(product)
+    }
+    
+    func toggleBoolValue(_ value: inout Bool?) {
+        if let currentValue = value {
+            value = !currentValue
+        } else {
+            value = true
+        }
     }
 }
