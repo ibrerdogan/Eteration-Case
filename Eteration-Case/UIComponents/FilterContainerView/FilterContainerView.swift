@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 final class FilterContainerView: UIView{
+    var openFilter:()->() = {}
     private lazy var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -31,6 +32,8 @@ final class FilterContainerView: UIView{
         button.setTitle("Select Filter", for: .normal)
         button.backgroundColor = .mainGrayColor
         button.titleLabel?.font = .montserratRegular(size: 14)
+        button.titleLabel?.textColor = .black
+        button.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -70,6 +73,10 @@ final class FilterContainerView: UIView{
             bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
             
         ])
+    }
+    
+    @objc func filterButtonTapped(){
+        openFilter()
     }
     
 }

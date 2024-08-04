@@ -27,6 +27,10 @@ class HomeViewController: UIViewController {
     private lazy var filterContainerView: FilterContainerView = {
        let view = FilterContainerView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.openFilter = { [weak self] in
+            guard let strongSelf = self else  {return}
+            strongSelf.present(FilterViewController(), animated: true)
+        }
         return view
     }()
     

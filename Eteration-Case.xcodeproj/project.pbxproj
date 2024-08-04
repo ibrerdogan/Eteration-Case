@@ -45,6 +45,8 @@
 		7F6F19002C5D812400E4D81B /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F18FF2C5D812400E4D81B /* APIEndpoint.swift */; };
 		7F6F19022C5D815600E4D81B /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F19012C5D815600E4D81B /* NetworkError.swift */; };
 		7F6F19072C5D82AF00E4D81B /* ETProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F19062C5D82AF00E4D81B /* ETProduct.swift */; };
+		7FC60A672C5FA24000CB7247 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC60A662C5FA24000CB7247 /* Filter.swift */; };
+		7FC60A692C5FA24B00CB7247 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC60A682C5FA24B00CB7247 /* FilterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,8 @@
 		7F6F18FF2C5D812400E4D81B /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		7F6F19012C5D815600E4D81B /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		7F6F19062C5D82AF00E4D81B /* ETProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETProduct.swift; sourceTree = "<group>"; };
+		7FC60A662C5FA24000CB7247 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		7FC60A682C5FA24B00CB7247 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +292,8 @@
 				7F6F18F02C5D768000E4D81B /* Cart */,
 				7F6F18EF2C5D767700E4D81B /* Home */,
 				7F6F18EA2C5D74FD00E4D81B /* MainTabbar */,
+				7FC60A662C5FA24000CB7247 /* Filter.swift */,
+				7FC60A682C5FA24B00CB7247 /* FilterViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -539,6 +545,7 @@
 			files = (
 				7F6F18FE2C5D810D00E4D81B /* NetworkService.swift in Sources */,
 				7F1942BA2C5E79D30034DB7D /* UIColor+Extension.swift in Sources */,
+				7FC60A672C5FA24000CB7247 /* Filter.swift in Sources */,
 				7F6F18BA2C5D72D600E4D81B /* ViewController.swift in Sources */,
 				7F1942BC2C5E7C100034DB7D /* HomeViewModel.swift in Sources */,
 				7F6F18C02C5D72D600E4D81B /* Eteration_Case.xcdatamodeld in Sources */,
@@ -560,6 +567,7 @@
 				7F6F18B82C5D72D600E4D81B /* SceneDelegate.swift in Sources */,
 				7F6F18F42C5D76B000E4D81B /* HomeViewController.swift in Sources */,
 				7F1942AB2C5E74BC0034DB7D /* FilterContainerView.swift in Sources */,
+				7FC60A692C5FA24B00CB7247 /* FilterViewController.swift in Sources */,
 				7F1942D62C5ED7310034DB7D /* DetailViewModel.swift in Sources */,
 				7F6F19022C5D815600E4D81B /* NetworkError.swift in Sources */,
 				7F6F18F62C5D76BC00E4D81B /* CartViewController.swift in Sources */,
