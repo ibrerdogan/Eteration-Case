@@ -9,12 +9,12 @@ import Foundation
 import UIKit
 final class FilterCustomView: UIView{
     var filterTypeList: [String]
+    var staticFilterTypeList: [String]
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .montserratLight(size: 14)
         label.textColor = .mainBlueColor?.withAlphaComponent(0.4)
-        label.text = "test"
         return label
     }()
     
@@ -29,7 +29,7 @@ final class FilterCustomView: UIView{
         searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search",
                                                                              attributes: [NSAttributedString.Key.foregroundColor: UIColor.mainBlueColor?.withAlphaComponent(0.3) ?? .gray,
                                                                                           NSAttributedString.Key.font: UIFont.montserratMedium(size: 18)])
-        //searchBar.delegate = self
+        searchBar.delegate = self
         return searchBar
     }()
     
@@ -42,9 +42,11 @@ final class FilterCustomView: UIView{
         tableView.separatorStyle = .none
         return tableView
     }()
-    init(filterTypeList: [String]) {
+    init(filterTypeList: [String], filterType: FilterType) {
         self.filterTypeList = filterTypeList
+        self.staticFilterTypeList = filterTypeList
         super.init(frame: .zero)
+        titleLabel.text = filterType.rawValue
         addComponents()
         configureLayout()
     }
@@ -76,6 +78,21 @@ final class FilterCustomView: UIView{
             filterTypeTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
+    
+    func filterBySearch(with text: String){
+        if !text.isEmpty{
+            let newArray = staticFilterTypeList.filter({$0.contains(text)})
+            filterTypeList = newArray
+            updateView()
+        }else {
+            filterTypeList = staticFilterTypeList
+            updateView()
+        }
+    }
+    
+    private func updateView(){
+        filterTypeTableView.reloadData()
+    }
 }
 extension FilterCustomView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,6 +106,15 @@ extension FilterCustomView: UITableViewDelegate, UITableViewDataSource {
         cell.configure(with: filterTypeList[indexPath.row], isSelected: false)
         return cell
     }
+}
+
+extension FilterCustomView: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        filterBySearch(with: searchText)
+    }
     
-    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
+        filterBySearch(with: "")
+    }
+
 }

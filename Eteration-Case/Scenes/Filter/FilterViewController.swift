@@ -67,7 +67,7 @@ final class FilterViewController: UIViewController {
             case .name:
                 itemList = viewModel.uniqueNames
             }
-            let filterView = FilterCustomView(filterTypeList: itemList)
+            let filterView = FilterCustomView(filterTypeList: itemList,filterType: type)
             filterView.heightAnchor.constraint(equalToConstant: 200).isActive = true
             filterCustomStackView.addArrangedSubview(filterView)
         }
