@@ -32,6 +32,13 @@ final class FilterViewController: UIViewController {
         return view
     }()
     
+    private lazy var mainScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.isScrollEnabled = true
+        return scrollView
+    }()
+    
     private lazy var filterCustomStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -104,7 +111,8 @@ final class FilterViewController: UIViewController {
         view.addSubview(closeButton)
         view.addSubview(titleLabel)
         view.addSubview(titleSeperatorView)
-        view.addSubview(filterCustomStackView)
+        view.addSubview(mainScrollView)
+        mainScrollView.addSubview(filterCustomStackView)
         view.addSubview(mainButton)
     }
     
@@ -123,9 +131,15 @@ final class FilterViewController: UIViewController {
             titleSeperatorView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 5),
             titleSeperatorView.heightAnchor.constraint(equalToConstant: 2),
             
-            filterCustomStackView.topAnchor.constraint(equalTo: titleSeperatorView.bottomAnchor, constant: 20),
-            filterCustomStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            filterCustomStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            mainScrollView.topAnchor.constraint(equalTo:titleSeperatorView.bottomAnchor, constant: 20),
+            mainScrollView.bottomAnchor.constraint(equalTo: mainButton.topAnchor, constant: -10),
+            mainScrollView.widthAnchor.constraint(equalToConstant: self.view.frame.width),
+            
+            filterCustomStackView.topAnchor.constraint(equalTo: mainScrollView.topAnchor, constant: 20),
+            filterCustomStackView.leadingAnchor.constraint(equalTo: mainScrollView.leadingAnchor, constant: 10),
+            filterCustomStackView.trailingAnchor.constraint(equalTo: mainScrollView.trailingAnchor, constant: -10),
+            filterCustomStackView.widthAnchor.constraint(equalTo: mainScrollView.widthAnchor, multiplier: 1, constant: -20),
+            filterCustomStackView.bottomAnchor.constraint(equalTo: mainScrollView.bottomAnchor),
            
             
             mainButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
