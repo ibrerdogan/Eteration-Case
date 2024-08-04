@@ -37,7 +37,7 @@ final class CartViewModel: CartViewModelProtocol {
     }
     
     func updateCartWithModel(with model: ETProductModel){
-        coreDataManager.updateProduct(id: model.id!, isFav: model.isFavourite, quantity: Int(model.cartQuantity))
+        coreDataManager.updateProduct(productModel: ETProduct(from: model))
         getCartProducts()
     }
     

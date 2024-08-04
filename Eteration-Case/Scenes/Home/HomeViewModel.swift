@@ -61,7 +61,9 @@ final class HomeViewModel: HomeViewModelProtocol {
     }
     
     func addCardItem(model: ETProduct){
-        coreDataManager.addProduct(productModel: model, isFav: false, quantity: 1)
+        var changedModel = model
+        changedModel.productQuantity = (changedModel.productQuantity ?? 0) + 1
+        coreDataManager.updateProduct(productModel: changedModel)
         NotificationCenter.default.post(name: .cartUpdated, object: nil)
     }
 

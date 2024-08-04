@@ -12,4 +12,20 @@ struct ETProduct: Codable {
     let image: String
     let price, description, model, brand: String
     let id: String
+    var isFav: Bool?
+    var productQuantity: Int16?
+    
+    
+    init(from coreModel: ETProductModel){
+        id = coreModel.id ?? ""
+        createdAt = coreModel.createdAt ?? ""
+        name = coreModel.name ?? ""
+        image = coreModel.image ?? ""
+        price = coreModel.price ?? ""
+        description = coreModel.descriptionString ?? ""
+        model = coreModel.model ?? ""
+        brand = coreModel.brand ?? ""
+        isFav = coreModel.isFavourite
+        productQuantity = coreModel.cartQuantity
+    }
 }

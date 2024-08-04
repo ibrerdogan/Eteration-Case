@@ -35,7 +35,7 @@ class CoreDataManager {
     }
     
     // Add new item
-    func addProduct(productModel: ETProduct,isFav: Bool, quantity: Int) {
+    func addProduct(productModel: ETProduct) {
         let context = persistentContainer.viewContext
         let product = ETProductModel(context: context)
         product.createdAt = productModel.createdAt
@@ -46,32 +46,39 @@ class CoreDataManager {
         product.model = productModel.model
         product.brand = productModel.brand
         product.id = productModel.id
-        product.isFavourite = isFav
-        product.cartQuantity = Int16(quantity)
+        product.isFavourite = productModel.isFav ?? false
+        product.cartQuantity = product.cartQuantity
         
         saveContext()
     }
     
     // Update item
-    func updateProduct(id: String, isFav: Bool?, quantity: Int?) {
+    func updateProduct(productModel: ETProduct) {
         let context = persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<ETProductModel> = ETProductModel.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        fetchRequest.predicate = NSPredicate(format: "id == %@", productModel.id)
         
         do {
             let products = try context.fetch(fetchRequest)
             if let product = products.first {
-                if let isFav = isFav {
+                if let isFav = productModel.isFav {
                     product.isFavourite = isFav
-                }
-                if let quantity = quantity {
-                    if quantity == 0 {
+                    if !product.isFavourite && product.cartQuantity <= 0{
                         context.delete(product)
-                    } else {
-                        product.cartQuantity = Int16(quantity)
+                    }
+                }
+                //TODO: check add again make zero
+                if let increaseQuantity = productModel.productQuantity{
+                    let quantity = product.cartQuantity
+                    product.cartQuantity = increaseQuantity
+                    if product.cartQuantity <= 0 && !product.isFavourite{
+                        context.delete(product)
                     }
                 }
                 saveContext()
+            }
+            else{
+                addProduct(productModel: productModel)
             }
         } catch {
             print("Failed to fetch product: \(error)")
