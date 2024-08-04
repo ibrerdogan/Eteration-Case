@@ -36,6 +36,8 @@ final class ProductCustomCellView: UICollectionViewCell{
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
+        label.font = .montserratRegular(size: 14)
+        label.textColor = .mainBlueColor
         return label
     }()
     
@@ -44,6 +46,8 @@ final class ProductCustomCellView: UICollectionViewCell{
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
         label.lineBreakMode = .byWordWrapping
+        label.font = .montserratRegular(size: 14)
+        label.textColor = .black
         return label
     }()
     
@@ -77,7 +81,7 @@ final class ProductCustomCellView: UICollectionViewCell{
     
     func configureCellView(with product: ETProduct){
         productNameLabel.text = product.name
-        productPriceLabel.text = product.price
+        productPriceLabel.text = "\(product.price) ₺"
         itemId = product.id
         self.product = product
         configureFavButton()

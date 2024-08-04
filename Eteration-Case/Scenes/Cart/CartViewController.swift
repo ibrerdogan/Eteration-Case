@@ -30,6 +30,14 @@ class CartViewController: UIViewController {
         label.text = "Sepette hiç ürününüz yok"
         return label
     }()
+    
+    private lazy var bottomView: CartBottomView = {
+        let view = CartBottomView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    
     init(viewModel: CartViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -38,6 +46,7 @@ class CartViewController: UIViewController {
             guard let strongSelf = self else {return}
             strongSelf.configureView(isNoProduct: strongSelf.viewModel.cartProducts.count == 0)
             strongSelf.cartTableView.reloadData()
+            strongSelf.bottomView.setTotal(totalPrice: strongSelf.viewModel.calculateTotalPrice())
             
         }
     }
@@ -53,6 +62,7 @@ class CartViewController: UIViewController {
         configureNavigationBar(title: "Cart", hideBackButton: true)
         addComponents()
         configureLayout()
+        bottomView.setTotal(totalPrice: viewModel.calculateTotalPrice())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +73,7 @@ class CartViewController: UIViewController {
     {
         view.addSubview(cartTableView)
         view.addSubview(infoLabel)
+        view.addSubview(bottomView)
     }
     
     private func configureLayout(){
@@ -71,7 +82,11 @@ class CartViewController: UIViewController {
             cartTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             cartTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cartTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            cartTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            cartTableView.bottomAnchor.constraint(equalTo: bottomView.topAnchor),
+            
+            bottomView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -10),
+            bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             infoLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -99,7 +114,6 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource{
         cell.productQuantityChanged = {[weak self] model in
             guard let strongSelf = self else {return}
             strongSelf.viewModel.updateCartWithModel(with: model)
-            
         }
         return cell
     }

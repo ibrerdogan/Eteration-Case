@@ -49,6 +49,21 @@ final class CartViewModel: CartViewModelProtocol {
         getCartProducts()
     }
     
+    func calculateTotalPrice() -> String{
+        var total : Double = 0
+        cartProducts.forEach { model in
+            total += stringToDouble(model.price) ?? 0 * Double(model.cartQuantity)
+        }
+        return "\(total) ₺"
+    }
+    
+    func stringToDouble(_ string: String?) -> Double? {
+        guard let string = string else {
+            return nil
+        }
+        return Double(string)
+    }
+    
     deinit {
            NotificationCenter.default.removeObserver(self)
        }

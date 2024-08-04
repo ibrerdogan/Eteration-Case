@@ -30,12 +30,12 @@ struct ETProduct: Codable {
     }
     
     var priceValue: Double? {
-            return Double(price)
-        }
+        return Double(price)
+    }
         
-        var dateValue: Date? {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            return dateFormatter.date(from: createdAt)
-        }
+    var dateValue: Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter.date(from: createdAt)
+    }
 }
