@@ -38,6 +38,7 @@ final class CartViewModel: CartViewModelProtocol {
     }
     
     func updateCartWithModel(with model: ETProductModel){
+        NotificationCenter.default.post(name: .cartUpdated, object: nil)
         coreDataManager.updateProduct(productModel: ETProduct(from: model))
         getCartProducts()
     }

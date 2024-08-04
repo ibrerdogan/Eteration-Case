@@ -99,6 +99,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     func configureObservables() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: .favouritesUpdated, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: .cartUpdated, object: nil)
     }
     
     @objc private func handleNotification(_ notification: Notification) {

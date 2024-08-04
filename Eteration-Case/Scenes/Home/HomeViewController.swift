@@ -70,6 +70,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        getUnreadNotificationCountAndShowOnBadge()
         setIndicatorViewvisibilty(isVisible: true)
         configureNavigationBar(title: "Home", hideBackButton: true)
         addComponents()
@@ -77,12 +78,26 @@ class HomeViewController: UIViewController {
         viewModel.updateView = { [weak self] in
             guard let strongSelf = self else {return}
             DispatchQueue.main.async {
+                strongSelf.getUnreadNotificationCountAndShowOnBadge()
                 strongSelf.setIndicatorViewvisibilty(isVisible: false)
                 strongSelf.productCollectionView.reloadData()
             }
         }
     }
     
+    
+    private func getUnreadNotificationCountAndShowOnBadge(){
+        guard let tabbarItems = self.tabBarController?.tabBar.items else {return}
+        var totalCartNumber = 0
+        viewModel.coreDataManager.fetchAllProducts().forEach { model in
+            totalCartNumber += Int(model.cartQuantity)
+        }
+        if totalCartNumber > 0 {
+            tabbarItems[1].badgeValue = "\(totalCartNumber)"
+        }else{
+            tabbarItems[1].badgeValue = nil
+        }
+    }
     
     private func addComponents(){
         view.addSubview(searchBar)
