@@ -85,6 +85,10 @@ extension FavouriteViewController: UICollectionViewDelegate, UICollectionViewDat
             guard let strongSelf = self else {return}
             strongSelf.viewModel.addFavItem(model: model)
         }
+        cell.addItemToCard = {[weak self] model in
+            guard let strongSelf = self else {return}
+            strongSelf.viewModel.addCardItem(model: model)
+        }
         return cell
     }
     

@@ -41,6 +41,14 @@ final class FavouriteViewModel: FavouriteViewModelProtocol {
     func addFavItem(model: ETProduct){
         coreDataManager.updateProduct(productModel: model)
         getFavouriteItems()
+        NotificationCenter.default.post(name: .favouritesUpdated, object: nil)
+    }
+    
+    func addCardItem(model: ETProduct){
+        var changedModel = model
+        changedModel.productQuantity = (changedModel.productQuantity ?? 0) + 1
+        coreDataManager.updateProduct(productModel: changedModel)
+        NotificationCenter.default.post(name: .cartUpdated, object: nil)
     }
     
     func configureObservables() {

@@ -40,6 +40,7 @@ final class HomeViewModel: HomeViewModelProtocol {
         self.networkService = networkService
         self.coreDataManager = coreDataManager
         getFavItems()
+        configureObservables()
         Task{
             await fethItems()
         }
@@ -93,6 +94,15 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     func showFilteredProducts(products: [ETProduct]){
         productItemList = products
+        updateView()
+    }
+    
+    func configureObservables() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: .favouritesUpdated, object: nil)
+    }
+    
+    @objc private func handleNotification(_ notification: Notification) {
+        getFavItems()
         updateView()
     }
 
