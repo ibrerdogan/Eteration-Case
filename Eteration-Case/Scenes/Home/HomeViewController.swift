@@ -147,6 +147,7 @@ class HomeViewController: UIViewController {
     private func pushDetailView(with model: ETProduct){
         let viewModel = DetailViewModel(selectedProduct: model,coredataManager: viewModel.coreDataManager)
         let viewController = DetailViewController(viewModel: viewModel)
+        viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     private func setIndicatorViewvisibilty(isVisible: Bool){
