@@ -52,6 +52,7 @@
 		7FC60A762C5FAF2D00CB7247 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC60A752C5FAF2D00CB7247 /* FilterViewModel.swift */; };
 		7FC60A7A2C5FDBAF00CB7247 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC60A792C5FDBAF00CB7247 /* UIViewController+Extension.swift */; };
 		7FC60A7D2C5FDE9300CB7247 /* CartBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC60A7C2C5FDE9300CB7247 /* CartBottomView.swift */; };
+		7FC60A812C60115200CB7247 /* FavouriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC60A802C60115200CB7247 /* FavouriteViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 		7FC60A752C5FAF2D00CB7247 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
 		7FC60A792C5FDBAF00CB7247 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		7FC60A7C2C5FDE9300CB7247 /* CartBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartBottomView.swift; sourceTree = "<group>"; };
+		7FC60A802C60115200CB7247 /* FavouriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				7F6F18F72C5D76CB00E4D81B /* FavouriteViewController.swift */,
+				7FC60A802C60115200CB7247 /* FavouriteViewModel.swift */,
 			);
 			path = Favourite;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				7FC60A692C5FA24B00CB7247 /* FilterViewController.swift in Sources */,
 				7F1942D62C5ED7310034DB7D /* DetailViewModel.swift in Sources */,
 				7F6F19022C5D815600E4D81B /* NetworkError.swift in Sources */,
+				7FC60A812C60115200CB7247 /* FavouriteViewModel.swift in Sources */,
 				7F6F18F62C5D76BC00E4D81B /* CartViewController.swift in Sources */,
 				7F1942A82C5E737F0034DB7D /* UIImageView+Extensions.swift in Sources */,
 				7F6F18EC2C5D750800E4D81B /* MainTabbarViewModel.swift in Sources */,

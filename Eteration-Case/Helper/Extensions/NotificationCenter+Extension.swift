@@ -8,4 +8,5 @@
 import Foundation
 extension Notification.Name {
     static let cartUpdated = Notification.Name("cartUpdated")
+    static let favouritesUpdated = Notification.Name("favouritesUpdated")
 }

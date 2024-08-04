@@ -41,15 +41,17 @@ final class MainTabbarViewModel: TabBarViewProtocol {
                                                      selectedImage: UIImage(systemName: "cart"))
         let cartNavigationController = UINavigationController(rootViewController: cartViewController)
         
-        let favouriteViewcontroller = FavouriteViewController()
+        let favouriteViewModel = FavouriteViewModel(coreDataManager: coreDataManager)
+        let favouriteViewcontroller = FavouriteViewController(viewModel: favouriteViewModel)
         favouriteViewcontroller.tabBarItem = UITabBarItem(title: nil,
                                                      image: UIImage(systemName: "star"),
                                                      selectedImage: UIImage(systemName: "star"))
+        let favouriteNavigationController = UINavigationController(rootViewController: favouriteViewcontroller)
         
         let profileViewController = ProfileViewController()
         profileViewController.tabBarItem = UITabBarItem(title: nil,
                                                      image: UIImage(systemName: "person"),
                                                      selectedImage: UIImage(systemName: "person"))
-        return [homeNavigationController,cartNavigationController,favouriteViewcontroller,profileViewController]
+        return [homeNavigationController,cartNavigationController,favouriteNavigationController,profileViewController]
     }
 }
