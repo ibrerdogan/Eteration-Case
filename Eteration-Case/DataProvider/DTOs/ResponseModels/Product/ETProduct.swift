@@ -28,4 +28,14 @@ struct ETProduct: Codable {
         isFav = coreModel.isFavourite
         productQuantity = coreModel.cartQuantity
     }
+    
+    var priceValue: Double? {
+            return Double(price)
+        }
+        
+        var dateValue: Date? {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            return dateFormatter.date(from: createdAt)
+        }
 }

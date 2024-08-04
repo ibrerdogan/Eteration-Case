@@ -10,8 +10,8 @@ final class FilterCustomViewCell: UITableViewCell{
     static let identifier = "FilterCustomViewCell"
     var isFilterSelected: Bool = false
     var filterString: String = ""
-    var changeFilter: (Bool,String)->() = { _,_ in}
-    
+    var changeFilter: (Bool,String,FilterSortTypes?)->() = { _,_,_ in}
+    var sortType: FilterSortTypes?
     private lazy var selectionImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,14 +41,24 @@ final class FilterCustomViewCell: UITableViewCell{
         isFilterSelected = isSelected
     }
     
+    func configure(with name: String, isSelected: Bool, sortType: FilterSortTypes){
+        filterSectionTitleLabel.text = name
+        filterString = name
+        isFilterSelected = isSelected
+        self.sortType = sortType
+        configureSelectImage(isSelected: false)
+    }
+    
     func changeSelection(){
         isFilterSelected.toggle()
         configureSelectImage(isSelected: isFilterSelected)
-        changeFilter(isFilterSelected, filterString)
+        changeFilter(isFilterSelected, filterString,self.sortType)
     }
     
     private func configureSelectImage(isSelected: Bool){
-        selectionImageView.image = isSelected ? UIImage(systemName: "checkmark.square") : UIImage(systemName: "square")
+        let unSelectIcon = sortType == nil ? UIImage(systemName: "square"): UIImage(systemName: "circle")
+        let selectIcon = sortType == nil ? UIImage(systemName: "checkmark.square") : UIImage(systemName: "circle.circle")
+        selectionImageView.image = isSelected ? selectIcon : unSelectIcon
     }
     
     private func addComponents()

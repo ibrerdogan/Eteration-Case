@@ -11,7 +11,8 @@ final class FilterCustomView: UIView{
     var filterTypeList: [String]
     var staticFilterTypeList: [String]
     var filterType: FilterType
-    var applieFilter: (Bool,String,FilterType)->() = { _,_,_ in}
+    var applieFilter: (Bool,String,FilterType,FilterSortTypes?)->() = { _,_,_,_ in}
+    let sortTypeArray : [FilterSortTypes] = [.oldToNew, .newToOld, .priceHightToLow, .priceLowToHight]
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -22,6 +23,7 @@ final class FilterCustomView: UIView{
     
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
+        searchBar.isHidden = filterType == .sort
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.placeholder = "Search"
         searchBar.searchBarStyle = UISearchBar.Style.default
@@ -49,6 +51,7 @@ final class FilterCustomView: UIView{
         self.filterType = filterType
         self.staticFilterTypeList = filterTypeList
         super.init(frame: .zero)
+        getSortTypes()
         titleLabel.text = filterType.rawValue
         addComponents()
         configureLayout()
@@ -56,6 +59,15 @@ final class FilterCustomView: UIView{
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func getSortTypes(){
+        if filterTypeList.isEmpty {
+            let allSortTypes = [FilterSortTypes.oldToNew, FilterSortTypes.newToOld, FilterSortTypes.priceHightToLow, FilterSortTypes.priceLowToHight]
+            allSortTypes.forEach { type in
+                filterTypeList.append(type.rawValue)
+            }
+        }
     }
     
     private func addComponents(){
@@ -75,7 +87,7 @@ final class FilterCustomView: UIView{
             searchBar.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             searchBar.heightAnchor.constraint(equalToConstant: 50),
             
-            filterTypeTableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 5),
+            filterTypeTableView.topAnchor.constraint(equalTo: filterType == .sort ? titleLabel.bottomAnchor : searchBar.bottomAnchor, constant: 5),
             filterTypeTableView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: 10),
             filterTypeTableView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: -10),
             filterTypeTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
@@ -106,11 +118,18 @@ extension FilterCustomView: UITableViewDelegate, UITableViewDataSource {
         guard let cell = filterTypeTableView.dequeueReusableCell(withIdentifier: FilterCustomViewCell.identifier, for: indexPath) as? FilterCustomViewCell else {
             return UITableViewCell()
         }
-        cell.configure(with: filterTypeList[indexPath.row], isSelected: false)
+        if filterType != .sort {
+            cell.configure(with: filterTypeList[indexPath.row], isSelected: false)
+        }
+        else {
+            if indexPath.row < sortTypeArray.count{
+                cell.configure(with:filterTypeList[indexPath.row], isSelected: false, sortType: sortTypeArray[indexPath.row])
+            }
+        }
         cell.selectionStyle = .none
-        cell.changeFilter = {[weak self] isSelect,filterName in
+        cell.changeFilter = {[weak self] isSelect,filterName,sortType in
             guard let strongSelf = self else {return}
-            strongSelf.applieFilter(isSelect,filterName,strongSelf.filterType)
+            strongSelf.applieFilter(isSelect,filterName,strongSelf.filterType,sortType)
         }
         return cell
     }

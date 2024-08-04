@@ -79,13 +79,15 @@ final class FilterViewController: UIViewController {
                 itemList = viewModel.uniqueNames
             case .model:
                 itemList = viewModel.uniqueNames
+            case .sort:
+                itemList = []
             }
             let filterView = FilterCustomView(filterTypeList: itemList,filterType: type)
-            filterView.applieFilter = {[weak self] isSelect,filterText,filterType in
+            filterView.applieFilter = {[weak self] isSelect,filterText,filterType,sortTpe in
                 guard let strongSelf = self else {return}
-                strongSelf.viewModel.filter(isSelected: isSelect, filterText: filterText, type: filterType)
+                strongSelf.viewModel.filter(isSelected: isSelect, filterText: filterText, type: filterType, sortType: sortTpe)
             }
-            filterView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+            filterView.heightAnchor.constraint(equalToConstant: type != .sort ? 200 : 150).isActive = true
             filterCustomStackView.addArrangedSubview(filterView)
         }
     }

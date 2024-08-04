@@ -34,6 +34,7 @@ final class FilterViewModel: FilterViewModelProtocol {
     init(productItemList: [ETProduct]) {
         self.productItemList = productItemList
         self.filteredItemList = productItemList
+        filterTypeList.append(.sort)
         getProductNames()
         getProductBrand()
         getProductModels()
@@ -60,7 +61,23 @@ final class FilterViewModel: FilterViewModelProtocol {
         }
     }
     
-    func filter(isSelected: Bool,filterText: String, type: FilterType)
+    func sortOldToNew(products: [ETProduct]) -> [ETProduct] {
+        return products.sorted { ($0.dateValue ?? Date()) < ($1.dateValue ?? Date()) }
+    }
+
+    func sortNewToOld(products: [ETProduct]) -> [ETProduct] {
+        return products.sorted { ($0.dateValue ?? Date()) > ($1.dateValue ?? Date()) }
+    }
+
+    func sortPriceLowToHigh(products: [ETProduct]) -> [ETProduct] {
+        return products.sorted { ($0.priceValue ?? 0) < ($1.priceValue ?? 0) }
+    }
+
+    func sortPriceHighToLow(products: [ETProduct]) -> [ETProduct] {
+        return products.sorted { ($0.priceValue ?? 0) > ($1.priceValue ?? 0) }
+    }
+    
+    func filter(isSelected: Bool,filterText: String, type: FilterType, sortType: FilterSortTypes?)
     {
         if isSelected {
             switch type {
@@ -70,6 +87,18 @@ final class FilterViewModel: FilterViewModelProtocol {
                 filteredItemList = filteredItemList.filter({$0.name == filterText})
             case .model:
                 filteredItemList = filteredItemList.filter({$0.model == filterText})
+            case .sort:
+                guard let sortType = sortType else {return}
+                switch sortType{
+                case .oldToNew:
+                    filteredItemList = sortOldToNew(products: filteredItemList)
+                case .newToOld:
+                    filteredItemList = sortNewToOld(products: filteredItemList)
+                case .priceHightToLow:
+                    filteredItemList = sortPriceHighToLow(products: filteredItemList)
+                case .priceLowToHight:
+                    filteredItemList = sortPriceLowToHigh(products: filteredItemList)
+                }
             }
         }else {
             filteredItemList = productItemList
