@@ -130,7 +130,7 @@ class HomeViewController: UIViewController {
         return layout
         }
     private func pushDetailView(with model: ETProduct){
-        let viewModel = DetailViewModel(selectedProduct: model)
+        let viewModel = DetailViewModel(selectedProduct: model,coredataManager: viewModel.coreDataManager)
         let viewController = DetailViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -139,7 +139,7 @@ class HomeViewController: UIViewController {
         isVisible ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
         view.addSubview(searchBar)
         [searchBar,filterContainerView,productCollectionView].forEach { [weak self] view in
-            guard let strongSelf = self else {return}
+            guard self != nil else {return}
             view.isHidden = isVisible
         }
     }

@@ -41,6 +41,10 @@ final class DetailViewController: UIViewController{
     private lazy var bottomView: CartBottomView = {
         let view = CartBottomView(type: .detail)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.buttonTapped = { [weak self] in
+            guard let strongSelf = self else {return}
+            strongSelf.viewModel.addCardItem()
+        }
         return view
     }()
     

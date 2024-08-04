@@ -71,8 +71,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     }
     
     func addFavItem(model: ETProduct){
-        var changedModel = model
-        coreDataManager.updateProduct(productModel: changedModel)
+        coreDataManager.updateProduct(productModel: model)
         NotificationCenter.default.post(name: .cartUpdated, object: nil)
     }
     

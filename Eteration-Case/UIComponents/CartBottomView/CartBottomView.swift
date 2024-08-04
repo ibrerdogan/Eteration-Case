@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 final class CartBottomView: UIView {
+    var buttonTapped: ()->() = { }
     var viewType: BottomViewType
     private lazy var fieldStackView: UIStackView = {
         let stackView = UIStackView()
@@ -40,6 +41,7 @@ final class CartBottomView: UIView {
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Complete", for:  .normal)
         button.titleLabel?.font = .montserratSemiBold(size: 20)
+        button.addTarget(self, action: #selector(mainButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -91,6 +93,10 @@ final class CartBottomView: UIView {
             bottomAnchor.constraint(equalTo: completeButton.bottomAnchor, constant: 10)
             
         ])
+    }
+    
+    @objc func mainButtonTapped(){
+        buttonTapped()
     }
 
     
