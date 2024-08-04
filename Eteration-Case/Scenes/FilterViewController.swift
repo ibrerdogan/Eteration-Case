@@ -31,6 +31,12 @@ final class FilterViewController: UIViewController {
         return view
     }()
     
+    private lazy var testView: FilterCustomView = {
+        let view = FilterCustomView(filterTypeList: ["test","deneme"])
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -42,6 +48,7 @@ final class FilterViewController: UIViewController {
         view.addSubview(closeButton)
         view.addSubview(titleLabel)
         view.addSubview(titleSeperatorView)
+        view.addSubview(testView)
     }
     
     private func configureLayout(){
@@ -58,6 +65,11 @@ final class FilterViewController: UIViewController {
             titleSeperatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             titleSeperatorView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 5),
             titleSeperatorView.heightAnchor.constraint(equalToConstant: 2),
+            
+            testView.topAnchor.constraint(equalTo: titleSeperatorView.bottomAnchor, constant: 20),
+            testView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            testView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            testView.heightAnchor.constraint(equalToConstant: 200),
         ])
     }
     

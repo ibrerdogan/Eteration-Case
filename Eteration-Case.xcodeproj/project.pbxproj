@@ -47,6 +47,9 @@
 		7F6F19072C5D82AF00E4D81B /* ETProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F19062C5D82AF00E4D81B /* ETProduct.swift */; };
 		7FC60A672C5FA24000CB7247 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC60A662C5FA24000CB7247 /* Filter.swift */; };
 		7FC60A692C5FA24B00CB7247 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC60A682C5FA24B00CB7247 /* FilterViewController.swift */; };
+		7FC60A6E2C5FA76F00CB7247 /* FilterCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC60A6D2C5FA76F00CB7247 /* FilterCustomView.swift */; };
+		7FC60A712C5FA83A00CB7247 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC60A702C5FA83A00CB7247 /* Enums.swift */; };
+		7FC60A732C5FA9BB00CB7247 /* FilterCustomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC60A722C5FA9BB00CB7247 /* FilterCustomViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +113,9 @@
 		7F6F19062C5D82AF00E4D81B /* ETProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETProduct.swift; sourceTree = "<group>"; };
 		7FC60A662C5FA24000CB7247 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		7FC60A682C5FA24B00CB7247 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		7FC60A6D2C5FA76F00CB7247 /* FilterCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCustomView.swift; sourceTree = "<group>"; };
+		7FC60A702C5FA83A00CB7247 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		7FC60A722C5FA9BB00CB7247 /* FilterCustomViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCustomViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +147,7 @@
 		7F1942A52C5E73670034DB7D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				7FC60A6F2C5FA82F00CB7247 /* Enums */,
 				7F1942C72C5EB8660034DB7D /* CoreData */,
 				7F1942AC2C5E77690034DB7D /* Fonts */,
 				7F1942A62C5E736D0034DB7D /* Extensions */,
@@ -388,6 +395,7 @@
 		7F6F19082C5D860700E4D81B /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				7FC60A6A2C5FA75300CB7247 /* Filter */,
 				7F1942CA2C5EBEAA0034DB7D /* CartTableViewCell */,
 				7F1942A92C5E74AF0034DB7D /* FilterContainerView */,
 				7F4571DA2C5E48120039E704 /* ProductCustomCellView */,
@@ -401,6 +409,23 @@
 			children = (
 			);
 			path = SearchBar;
+			sourceTree = "<group>";
+		};
+		7FC60A6A2C5FA75300CB7247 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				7FC60A6D2C5FA76F00CB7247 /* FilterCustomView.swift */,
+				7FC60A722C5FA9BB00CB7247 /* FilterCustomViewCell.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		7FC60A6F2C5FA82F00CB7247 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				7FC60A702C5FA83A00CB7247 /* Enums.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -549,6 +574,8 @@
 				7F6F18BA2C5D72D600E4D81B /* ViewController.swift in Sources */,
 				7F1942BC2C5E7C100034DB7D /* HomeViewModel.swift in Sources */,
 				7F6F18C02C5D72D600E4D81B /* Eteration_Case.xcdatamodeld in Sources */,
+				7FC60A732C5FA9BB00CB7247 /* FilterCustomViewCell.swift in Sources */,
+				7FC60A6E2C5FA76F00CB7247 /* FilterCustomView.swift in Sources */,
 				7F6F18FA2C5D76D800E4D81B /* ProfileViewController.swift in Sources */,
 				7F1942C52C5EB70F0034DB7D /* ETProductModel+CoreDataProperties.swift in Sources */,
 				7F6F18B62C5D72D600E4D81B /* AppDelegate.swift in Sources */,
@@ -556,6 +583,7 @@
 				7F1942D42C5ED7290034DB7D /* DetailViewController.swift in Sources */,
 				7F4571DC2C5E482B0039E704 /* ProductCustomCellView.swift in Sources */,
 				7F1942C42C5EB70F0034DB7D /* ETProductModel+CoreDataClass.swift in Sources */,
+				7FC60A712C5FA83A00CB7247 /* Enums.swift in Sources */,
 				7F1942B82C5E785A0034DB7D /* UIFont+Extension.swift in Sources */,
 				7F6F18EE2C5D751500E4D81B /* MainTabbarViewController.swift in Sources */,
 				7F1942D12C5ECC000034DB7D /* NotificationCenter+Extension.swift in Sources */,
