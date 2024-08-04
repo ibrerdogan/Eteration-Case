@@ -11,7 +11,6 @@ final class ProductCustomCellView: UICollectionViewCell{
     static let identifier = "ProductCustomCellView"
     var addItemToCard: (ETProduct) -> () = { _ in  }
     var addItemToFav: (ETProduct) -> () = { _ in  }
-    var itemId: String = ""
     var product: ETProduct?
     private lazy var cellContainerView: UIView = {
         let view = UIView()
@@ -82,7 +81,6 @@ final class ProductCustomCellView: UICollectionViewCell{
     func configureCellView(with product: ETProduct){
         productNameLabel.text = product.name
         productPriceLabel.text = "\(product.price) ₺"
-        itemId = product.id
         self.product = product
         configureFavButton()
         productImageView.setNetworkImage(urlStr: product.image)

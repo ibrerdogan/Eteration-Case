@@ -20,7 +20,6 @@ final class CartTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
-        label.text = "Samsung"
         return label
     }()
     
@@ -28,7 +27,6 @@ final class CartTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
-        label.text = "100.0"
         return label
     }()
     
@@ -59,7 +57,6 @@ final class CartTableViewCell: UITableViewCell {
         label.backgroundColor = .mainBlueColor
         label.textColor = .white
         label.font = .montserratRegular(size: 18)
-        label.text = "10"
         label.textAlignment = .center
         return label
     }()
@@ -136,11 +133,5 @@ final class CartTableViewCell: UITableViewCell {
         product.cartQuantity -= 1
         productQuantityChanged(product)
     }
-    
-    //func changeQuantity(quantity: Int16?){
-    //    guard let quantity = quantity else {return}
-    //    productQuantityChanged(quantity)
-    //}
-    
     
 }

@@ -32,7 +32,7 @@ final class FilterContainerView: UIView{
         button.setTitle("Select Filter", for: .normal)
         button.backgroundColor = .mainGrayColor
         button.titleLabel?.font = .montserratRegular(size: 14)
-        button.titleLabel?.textColor = .black
+        button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
         return button
     }()
