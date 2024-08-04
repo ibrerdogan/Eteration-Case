@@ -29,7 +29,9 @@ class HomeViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.openFilter = { [weak self] in
             guard let strongSelf = self else  {return}
-            strongSelf.present(FilterViewController(), animated: true)
+            let filterViewModel = FilterViewModel(productItemList: strongSelf.viewModel.staticProductItemList)
+            let viewController = FilterViewController(viewModel: filterViewModel)
+            strongSelf.present(viewController, animated: true)
         }
         return view
     }()

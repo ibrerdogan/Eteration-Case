@@ -7,7 +7,7 @@
 
 import UIKit
 final class FilterViewController: UIViewController {
-    
+    var viewModel: FilterViewModel
     private lazy var closeButton: UIButton = {
        let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -31,24 +31,53 @@ final class FilterViewController: UIViewController {
         return view
     }()
     
-    private lazy var testView: FilterCustomView = {
-        let view = FilterCustomView(filterTypeList: ["test","deneme"])
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    private lazy var filterCustomStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .equalCentering
+        return stackView
     }()
+    
+    
+    init(viewModel: FilterViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        configureStackView()
         addComponents()
         configureLayout()
+    }
+    
+    private func configureStackView(){
+        viewModel.filterTypeList.forEach { type in
+            var itemList = [String]()
+            switch type {
+            case .brand:
+                itemList = viewModel.uniqueBrands
+            case .name:
+                itemList = viewModel.uniqueNames
+            }
+            let filterView = FilterCustomView(filterTypeList: itemList)
+            filterView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+            filterCustomStackView.addArrangedSubview(filterView)
+        }
     }
     
     private func addComponents(){
         view.addSubview(closeButton)
         view.addSubview(titleLabel)
         view.addSubview(titleSeperatorView)
-        view.addSubview(testView)
+        view.addSubview(filterCustomStackView)
     }
     
     private func configureLayout(){
@@ -66,10 +95,9 @@ final class FilterViewController: UIViewController {
             titleSeperatorView.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 5),
             titleSeperatorView.heightAnchor.constraint(equalToConstant: 2),
             
-            testView.topAnchor.constraint(equalTo: titleSeperatorView.bottomAnchor, constant: 20),
-            testView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            testView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            testView.heightAnchor.constraint(equalToConstant: 200),
+            filterCustomStackView.topAnchor.constraint(equalTo: titleSeperatorView.bottomAnchor, constant: 20),
+            filterCustomStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            filterCustomStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
         ])
     }
     
