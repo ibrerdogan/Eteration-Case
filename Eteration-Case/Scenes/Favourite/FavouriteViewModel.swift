@@ -38,6 +38,10 @@ final class FavouriteViewModel: FavouriteViewModelProtocol {
         }
         updateView()
     }
+    func addFavItem(model: ETProduct){
+        coreDataManager.updateProduct(productModel: model)
+        getFavouriteItems()
+    }
     
     func configureObservables() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: .favouritesUpdated, object: nil)

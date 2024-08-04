@@ -81,6 +81,10 @@ extension FavouriteViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCustomCellView.identifier, for: indexPath) as? ProductCustomCellView else {return UICollectionViewCell()}
         cell.configureCellView(with: viewModel.favouriteProductList[indexPath.row])
+        cell.addItemToFav = {[weak self] model in
+            guard let strongSelf = self else {return}
+            strongSelf.viewModel.addFavItem(model: model)
+        }
         return cell
     }
     
