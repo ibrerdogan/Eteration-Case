@@ -143,8 +143,8 @@ final class FilterViewController: UIViewController {
            
             
             mainButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            mainButton.leadingAnchor.constraint(equalTo: filterCustomStackView.leadingAnchor, constant: 0),
-            mainButton.trailingAnchor.constraint(equalTo: filterCustomStackView.trailingAnchor, constant: 0),
+            mainButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            mainButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             mainButton.heightAnchor.constraint(equalToConstant: 36),
         ])
     }
