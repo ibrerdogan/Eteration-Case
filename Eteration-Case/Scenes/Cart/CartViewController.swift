@@ -32,7 +32,7 @@ class CartViewController: UIViewController {
     }()
     
     private lazy var bottomView: CartBottomView = {
-        let view = CartBottomView()
+        let view = CartBottomView(type: .cart)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

@@ -38,12 +38,20 @@ final class DetailViewController: UIViewController{
         return textView
     }()
     
+    private lazy var bottomView: CartBottomView = {
+        let view = CartBottomView(type: .detail)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    
     init(viewModel: DetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         productImageView.setNetworkImage(urlStr: viewModel.selectedProduct.image)
         productNameLabel.text = viewModel.selectedProduct.name
         productDescriptionLabel.text = viewModel.selectedProduct.description
+        bottomView.setTotal(totalPrice: "\(viewModel.selectedProduct.price) ₺" )
         
         
     }
@@ -65,6 +73,7 @@ final class DetailViewController: UIViewController{
         view.addSubview(productImageView)
         view.addSubview(productNameLabel)
         view.addSubview(productDescriptionLabel)
+        view.addSubview(bottomView)
     }
     
     private func configureLayout(){
@@ -82,7 +91,11 @@ final class DetailViewController: UIViewController{
             productDescriptionLabel.topAnchor.constraint(equalTo: productNameLabel.bottomAnchor, constant: 10),
             productDescriptionLabel.leadingAnchor.constraint(equalTo: productImageView.leadingAnchor),
             productDescriptionLabel.trailingAnchor.constraint(equalTo: productImageView.trailingAnchor),
-            productDescriptionLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            productDescriptionLabel.bottomAnchor.constraint(equalTo: bottomView.topAnchor),
+            
+            bottomView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -10),
+            bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
     

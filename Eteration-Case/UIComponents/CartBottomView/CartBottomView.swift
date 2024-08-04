@@ -8,6 +8,14 @@
 import Foundation
 import UIKit
 final class CartBottomView: UIView {
+    var viewType: BottomViewType
+    private lazy var fieldStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
     private lazy var productPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -31,12 +39,13 @@ final class CartBottomView: UIView {
         button.backgroundColor = .mainBlueColor
         button.setTitleColor(.white, for: .normal)
         button.setTitle("Complete", for:  .normal)
-        button.titleLabel?.font = .montserratSemiBold(size: 15)
+        button.titleLabel?.font = .montserratSemiBold(size: 20)
         return button
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(type: BottomViewType) {
+        self.viewType = type
+        super.init(frame: .zero)
         addComponents()
         configureLayout()
     }
@@ -50,8 +59,19 @@ final class CartBottomView: UIView {
     }
     
     private func addComponents(){
-        addSubview(productPriceLabel)
-        addSubview(totalLabel)
+        switch viewType {
+        case .cart:
+            fieldStackView.addArrangedSubview(productPriceLabel)
+            fieldStackView.addArrangedSubview(totalLabel)
+            totalLabel.text = "Total"
+            completeButton.setTitle("Complete", for:  .normal)
+        case .detail:
+            totalLabel.text = "Price"
+            completeButton.setTitle("Add to Cart", for:  .normal)
+            fieldStackView.addArrangedSubview(totalLabel)
+            fieldStackView.addArrangedSubview(productPriceLabel)
+        }
+        addSubview(fieldStackView)
         addSubview(completeButton)
     }
     
@@ -63,16 +83,20 @@ final class CartBottomView: UIView {
             completeButton.heightAnchor.constraint(equalToConstant: 45),
             completeButton.widthAnchor.constraint(equalToConstant: 150),
             
-            totalLabel.topAnchor.constraint(equalTo: completeButton.topAnchor, constant: 0),
-            totalLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            fieldStackView.topAnchor.constraint(equalTo: completeButton.topAnchor),
+            fieldStackView.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 10),
+            fieldStackView.bottomAnchor.constraint(equalTo: completeButton.bottomAnchor),
             
-            productPriceLabel.bottomAnchor.constraint(equalTo: completeButton.bottomAnchor, constant: 0),
-            productPriceLabel.leadingAnchor.constraint(equalTo: totalLabel.leadingAnchor),
             
             bottomAnchor.constraint(equalTo: completeButton.bottomAnchor, constant: 10)
             
         ])
     }
+
     
-    
+}
+
+enum BottomViewType{
+    case cart
+    case detail
 }
