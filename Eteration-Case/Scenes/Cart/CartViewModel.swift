@@ -15,6 +15,8 @@ protocol CartViewModelDataSource {
 protocol CartViewModelEventSource: CartViewModelDataSource {
     func getCartProducts()
     func configureObservables()
+    func updateCartWithModel(with model: ETProductModel)
+    func calculateTotalPrice() -> String
 }
 
 protocol CartViewModelProtocol: CartViewModelEventSource { }
@@ -22,7 +24,6 @@ protocol CartViewModelProtocol: CartViewModelEventSource { }
 final class CartViewModel: CartViewModelProtocol {
     var updateView: () -> () = { }
     var cartProducts = [ETProductModel]()
-    
     var coreDataManager: CoreDataManager
     
     init(coreDataManager: CoreDataManager) {
@@ -57,7 +58,7 @@ final class CartViewModel: CartViewModelProtocol {
         return "\(total) ₺"
     }
     
-    func stringToDouble(_ string: String?) -> Double? {
+    private func stringToDouble(_ string: String?) -> Double? {
         guard let string = string else {
             return nil
         }

@@ -13,7 +13,7 @@ class CoreDataManager {
     let persistentContainer: NSPersistentContainer
     
     init() {
-        persistentContainer = NSPersistentContainer(name: "Eteration_Case") // Use the name of your .xcdatamodeld file
+        persistentContainer = NSPersistentContainer(name: "Eteration_Case")
         persistentContainer.loadPersistentStores { (description, error) in
             if let error = error {
                 fatalError("Unable to load persistent stores: \(error)")
@@ -67,7 +67,6 @@ class CoreDataManager {
                         context.delete(product)
                     }
                 }
-                //TODO: check add again make zero
                 if let increaseQuantity = productModel.productQuantity{
                     let quantity = product.cartQuantity
                     product.cartQuantity = increaseQuantity
@@ -84,8 +83,6 @@ class CoreDataManager {
             print("Failed to fetch product: \(error)")
         }
     }
-    
-    // Fetch all products
     func fetchAllProducts() -> [ETProductModel] {
         let context = persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<ETProductModel> = ETProductModel.fetchRequest()

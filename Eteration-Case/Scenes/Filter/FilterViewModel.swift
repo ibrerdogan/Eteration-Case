@@ -19,6 +19,12 @@ protocol FilterViewModelDataSource {
 protocol FilterViewModelEventSource: FilterViewModelDataSource {
     func getProductNames()
     func getProductBrand()
+    func getProductModels()
+    func sortOldToNew(products: [ETProduct]) -> [ETProduct]
+    func sortNewToOld(products: [ETProduct]) -> [ETProduct]
+    func sortPriceLowToHigh(products: [ETProduct]) -> [ETProduct]
+    func sortPriceHighToLow(products: [ETProduct]) -> [ETProduct]
+    func filter(isSelected: Bool,filterText: String, type: FilterType, sortType: FilterSortTypes?)
 }
 
 protocol FilterViewModelProtocol: FilterViewModelEventSource { }

@@ -128,7 +128,7 @@ class HomeViewController: UIViewController {
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
-        }
+    }
     private func pushDetailView(with model: ETProduct){
         let viewModel = DetailViewModel(selectedProduct: model,coredataManager: viewModel.coreDataManager)
         let viewController = DetailViewController(viewModel: viewModel)

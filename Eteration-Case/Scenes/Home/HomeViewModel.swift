@@ -18,6 +18,12 @@ protocol HomeViewModelDataSource {
 
 protocol HomeViewModelEventSource: HomeViewModelDataSource {
     func fethItems() async
+    func searchProduct(with text: String)
+    func addCardItem(model: ETProduct)
+    func addFavItem(model: ETProduct)
+    func getFavItems()
+    func productIsAddedFav(with id: String) -> Bool
+    func showFilteredProducts(products: [ETProduct])
 }
 
 protocol HomeViewModelProtocol: HomeViewModelEventSource { }
@@ -29,6 +35,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     var productItemList: [ETProduct] = []
     var staticProductItemList: [ETProduct] = []
     var networkService: NetworkService
+    
     init(networkService: NetworkService, coreDataManager: CoreDataManager) {
         self.networkService = networkService
         self.coreDataManager = coreDataManager
