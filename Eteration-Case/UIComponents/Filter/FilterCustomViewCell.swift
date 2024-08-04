@@ -9,7 +9,8 @@ import UIKit
 final class FilterCustomViewCell: UITableViewCell{
     static let identifier = "FilterCustomViewCell"
     var isFilterSelected: Bool = false
-    
+    var filterString: String = ""
+    var changeFilter: (Bool,String)->() = { _,_ in}
     
     private lazy var selectionImageView: UIImageView = {
         let imageView = UIImageView()
@@ -36,7 +37,18 @@ final class FilterCustomViewCell: UITableViewCell{
     
     func configure(with name: String, isSelected: Bool){
         filterSectionTitleLabel.text = name
+        filterString = name
         isFilterSelected = isSelected
+    }
+    
+    func changeSelection(){
+        isFilterSelected.toggle()
+        configureSelectImage(isSelected: isFilterSelected)
+        changeFilter(isFilterSelected, filterString)
+    }
+    
+    private func configureSelectImage(isSelected: Bool){
+        selectionImageView.image = isSelected ? UIImage(systemName: "checkmark.square") : UIImage(systemName: "square")
     }
     
     private func addComponents()

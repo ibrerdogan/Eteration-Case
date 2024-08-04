@@ -8,6 +8,7 @@
 import UIKit
 final class FilterViewController: UIViewController {
     var viewModel: FilterViewModel
+    var showFilterProducts: ([ETProduct]) -> () = { _ in }
     private lazy var closeButton: UIButton = {
        let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -36,8 +37,18 @@ final class FilterViewController: UIViewController {
         stackView.axis = .vertical
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .equalCentering
         return stackView
+    }()
+    
+    private lazy var mainButton: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .mainBlueColor
+        button.setTitleColor(.white, for: .normal)
+        button.setTitle("Primary", for: .normal)
+        button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(mainButtonTapped), for: .touchUpInside)
+        return button
     }()
     
     
@@ -68,8 +79,20 @@ final class FilterViewController: UIViewController {
                 itemList = viewModel.uniqueNames
             }
             let filterView = FilterCustomView(filterTypeList: itemList,filterType: type)
+            filterView.applieFilter = {[weak self] isSelect,filterText,filterType in
+                guard let strongSelf = self else {return}
+                strongSelf.viewModel.filter(isSelected: isSelect, filterText: filterText, type: filterType)
+            }
             filterView.heightAnchor.constraint(equalToConstant: 200).isActive = true
             filterCustomStackView.addArrangedSubview(filterView)
+        }
+    }
+    
+    @objc func mainButtonTapped(){
+        self.dismiss(animated: true){[weak self] in
+            guard let strongSelf = self else {return}
+            strongSelf.showFilterProducts(strongSelf.viewModel.filteredItemList)
+            
         }
     }
     
@@ -78,6 +101,7 @@ final class FilterViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(titleSeperatorView)
         view.addSubview(filterCustomStackView)
+        view.addSubview(mainButton)
     }
     
     private func configureLayout(){
@@ -97,7 +121,13 @@ final class FilterViewController: UIViewController {
             
             filterCustomStackView.topAnchor.constraint(equalTo: titleSeperatorView.bottomAnchor, constant: 20),
             filterCustomStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            filterCustomStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
+            filterCustomStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+           
+            
+            mainButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            mainButton.leadingAnchor.constraint(equalTo: filterCustomStackView.leadingAnchor, constant: 0),
+            mainButton.trailingAnchor.constraint(equalTo: filterCustomStackView.trailingAnchor, constant: 0),
+            mainButton.heightAnchor.constraint(equalToConstant: 36),
         ])
     }
     

@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 protocol FilterViewModelDataSource {
     var productItemList: [ETProduct] {get set}
+    var filteredItemList: [ETProduct] {get set}
     var filterTypeList: [FilterType] {get set}
     var uniqueNames: [String] {get set}
     var uniqueBrands: [String] {get set}
@@ -22,6 +23,7 @@ protocol FilterViewModelEventSource: FilterViewModelDataSource {
 protocol FilterViewModelProtocol: FilterViewModelEventSource { }
 
 final class FilterViewModel: FilterViewModelProtocol {
+    var filteredItemList =  [ETProduct]()
     var uniqueNames = [String]()
     var uniqueBrands = [String]()
     var filterTypeList = [FilterType]()
@@ -29,6 +31,7 @@ final class FilterViewModel: FilterViewModelProtocol {
     
     init(productItemList: [ETProduct]) {
         self.productItemList = productItemList
+        self.filteredItemList = productItemList
         getProductNames()
         getProductBrand()
     }
@@ -44,6 +47,20 @@ final class FilterViewModel: FilterViewModelProtocol {
         uniqueBrands = Array(Set(productItemList.map { $0.brand })).sorted()
         if !uniqueNames.isEmpty{
             filterTypeList.append(.brand)
+        }
+    }
+    
+    func filter(isSelected: Bool,filterText: String, type: FilterType)
+    {
+        if isSelected {
+            switch type {
+            case .brand:
+                filteredItemList = filteredItemList.filter({$0.brand == filterText})
+            case .name:
+                filteredItemList = filteredItemList.filter({$0.name == filterText})
+            }
+        }else {
+            filteredItemList = productItemList
         }
     }
     

@@ -31,6 +31,10 @@ class HomeViewController: UIViewController {
             guard let strongSelf = self else  {return}
             let filterViewModel = FilterViewModel(productItemList: strongSelf.viewModel.staticProductItemList)
             let viewController = FilterViewController(viewModel: filterViewModel)
+            viewController.showFilterProducts = {[weak self] productList in
+                guard let strongSelf = self else {return}
+                strongSelf.viewModel.showFilteredProducts(products: productList)
+            }
             strongSelf.present(viewController, animated: true)
         }
         return view

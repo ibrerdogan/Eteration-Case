@@ -84,5 +84,10 @@ final class HomeViewModel: HomeViewModelProtocol {
     func productIsAddedFav(with id: String) -> Bool {
         favProductList.contains(where: {$0 == id})
     }
+    
+    func showFilteredProducts(products: [ETProduct]){
+        productItemList = products
+        updateView()
+    }
 
 }

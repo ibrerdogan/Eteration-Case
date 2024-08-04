@@ -10,6 +10,8 @@ import UIKit
 final class FilterCustomView: UIView{
     var filterTypeList: [String]
     var staticFilterTypeList: [String]
+    var filterType: FilterType
+    var applieFilter: (Bool,String,FilterType)->() = { _,_,_ in}
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -44,6 +46,7 @@ final class FilterCustomView: UIView{
     }()
     init(filterTypeList: [String], filterType: FilterType) {
         self.filterTypeList = filterTypeList
+        self.filterType = filterType
         self.staticFilterTypeList = filterTypeList
         super.init(frame: .zero)
         titleLabel.text = filterType.rawValue
@@ -104,7 +107,17 @@ extension FilterCustomView: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         cell.configure(with: filterTypeList[indexPath.row], isSelected: false)
+        cell.selectionStyle = .none
+        cell.changeFilter = {[weak self] isSelect,filterName in
+            guard let strongSelf = self else {return}
+            strongSelf.applieFilter(isSelect,filterName,strongSelf.filterType)
+        }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       guard let cell = filterTypeTableView.cellForRow(at: indexPath) as? FilterCustomViewCell else {return}
+        cell.changeSelection()
     }
 }
 
